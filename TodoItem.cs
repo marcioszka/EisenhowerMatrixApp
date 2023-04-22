@@ -4,8 +4,7 @@ namespace EisenhowerMatrixApp
 {
     public class TodoItem
     {
-
-
+        
     }
 
 }
