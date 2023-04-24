@@ -22,7 +22,9 @@ namespace EisenhowerMatrixApp
 
         public DateTime GetDeadline() { return Deadline; }
 
-        public string GetSymbolForBool()
+        public bool GetStatus() { return IsDone; }
+
+        private string GetSymbolForStatus()
         {
             switch (IsDone)
             {
@@ -45,7 +47,7 @@ namespace EisenhowerMatrixApp
 
         public override string ToString()
         {
-            return $"[{GetSymbolForBool()}] {GetDeadline().ToString("d-M")} submit assignment";
+            return $"[{GetSymbolForStatus()}] {GetDeadline().ToString("d-M")} submit assignment";
         }
     }
 

@@ -28,7 +28,7 @@ namespace EisenhowerMatrixApp
         {
             foreach (TodoItem item in TodoItems)
             {
-                //if item.IsDone == false -> remove item from TodoItems
+                if (item.GetStatus() == false) { TodoItems.Remove(item); }
             }
         }
 
