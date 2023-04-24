@@ -22,6 +22,17 @@ namespace EisenhowerMatrixApp
 
         public DateTime GetDeadline() { return Deadline; }
 
+        public string GetSymbolForBool()
+        {
+            switch (IsDone)
+            {
+                case true:
+                    return "x";
+                case false: 
+                    return " ";
+            }
+        }
+
         public void Mark()
         {
             IsDone = true;
@@ -32,10 +43,9 @@ namespace EisenhowerMatrixApp
             IsDone = false;
         }
 
-        public string ToString(bool IsDone)
+        public override string ToString()
         {
-            //deadline to day-month, IsDone: true -> x, false -> ''
-            return $"[{IsDone}] {GetDeadline().ToString("d-M")} submit assignment";
+            return $"[{GetSymbolForBool()}] {GetDeadline().ToString("d-M")} submit assignment";
         }
     }
 
