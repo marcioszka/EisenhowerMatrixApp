@@ -37,7 +37,7 @@ namespace EisenhowerMatrixApp
             return TodoItems;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             //return formatted list of TodoItems: [ ] day-month task / [x] day-month submit assignment
             return "";

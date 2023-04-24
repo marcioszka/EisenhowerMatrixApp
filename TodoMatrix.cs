@@ -47,7 +47,7 @@ namespace EisenhowerMatrixApp
             //from list todoItems in every element of dictionary todoQuarters
         }
 
-        public string ToString()
+        public override string ToString()
         {
             //Returns a todoQuarters list (an Eisenhower todoMatrix) formatted to string.
             return "";
