@@ -37,10 +37,17 @@ namespace EisenhowerMatrixApp
             return TodoItems;
         }
 
-        public override string ToString()
+        public override string ToString() // TODO: poprawic
         {
             //return formatted list of TodoItems: [ ] day-month task / [x] day-month submit assignment
-            return "";
+            string taskList = "";
+            List<string> list = new List<string>;
+            for (int index = 1;  index <= TodoItems.Count; index++)
+            {
+                list.Append($"{index}. {TodoItems[index - 1].ToString()}");
+                taskList += $"{index}. {TodoItems[index - 1].ToString()}";
+            }
+            return taskList;
         }
     }
 

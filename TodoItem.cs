@@ -7,7 +7,7 @@ namespace EisenhowerMatrixApp
     {
         private string Title;
 
-        private DateTime Deadline;
+        private DateTime Deadline;  // TODO: set year to 2020
 
         private bool IsDone;// = false;
         [DefaultValue(false)]
