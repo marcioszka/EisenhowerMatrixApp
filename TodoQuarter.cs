@@ -14,9 +14,14 @@ namespace EisenhowerMatrixApp
             TodoItems = new List<TodoItem>();
         }
 
+        public List<TodoItem> GetItems()
+        {
+            return TodoItems;
+        }
+
         public void AddItem(string title, DateTime deadline) 
         {
-            TodoItems.Append(new TodoItem(title, deadline));
+            TodoItems.Add(new TodoItem(title, deadline));
         }
 
         public void RemoveItem(int index) 
@@ -24,28 +29,25 @@ namespace EisenhowerMatrixApp
             TodoItems.RemoveAt(index);
         }
 
-        public void ArchiveItems() 
+        public void ArchiveItems()  // TODO: enumeration operation may not execute --> poprawic
         {
-            foreach (TodoItem item in TodoItems)
-            {
-                if (item.GetStatus() == false) { TodoItems.Remove(item); }
-            }
+            //int index = 0;
+            //foreach (TodoItem item in TodoItems)
+            //{
+            //    if (item.GetStatus() == false) { TodoItems.RemoveAt(index); }
+            //    index++;
+            //}
+            //TodoItems.RemoveAll(foreach());
         }
 
-        public List<TodoItem> GetItems()
+        public override string ToString()
         {
-            return TodoItems;
-        }
-
-        public override string ToString() // TODO: poprawic
-        {
-            //return formatted list of TodoItems: [ ] day-month task / [x] day-month submit assignment
             string taskList = "";
-            List<string> list = new List<string>;
-            for (int index = 1;  index <= TodoItems.Count; index++)
-            {
-                list.Append($"{index}. {TodoItems[index - 1].ToString()}");
-                taskList += $"{index}. {TodoItems[index - 1].ToString()}";
+            int index = 1;
+            foreach(TodoItem item in TodoItems) 
+            { 
+                taskList += $"{index}. {item.ToString()}\n";
+                index++;
             }
             return taskList;
         }
