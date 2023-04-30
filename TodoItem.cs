@@ -22,7 +22,7 @@ namespace EisenhowerMatrixApp
 
         public DateTime GetDeadline() { return Deadline; }
 
-        public string ChangeDeadlineFormat() { return Deadline.ToString("d-M"); }
+        private string ChangeDeadlineFormat() { return Deadline.ToString("d-M"); }
 
         public bool GetStatus() { return IsDone; }
 
@@ -49,7 +49,7 @@ namespace EisenhowerMatrixApp
 
         public override string ToString()
         {
-            return $"[{GetSymbolForStatus()}] {ChangeDeadlineFormat()} submit assignment";
+            return $"[{GetSymbolForStatus()}] {ChangeDeadlineFormat()} {Title}";
         }
     }
 
