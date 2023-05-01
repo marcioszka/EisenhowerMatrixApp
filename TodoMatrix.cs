@@ -29,8 +29,8 @@ namespace EisenhowerMatrixApp
 
         public void AddItem(string title, DateTime deadline, bool IsImportant = false)
         {
-            // Adds new item to dictionary todoQuarters using adequate key.
-            // You should use method AddItem from TodoQuarter class.
+            string key = "UI";  // TODO: przekazac key od usera
+            TodoQuarters[key].AddItem(title, deadline);
         }
 
         public void AddItemsFromFile(string filename)
@@ -40,7 +40,7 @@ namespace EisenhowerMatrixApp
             //title|day-month|is_important
         }
 
-        public void SaveItemsToFile(string filenmename)
+        public void SaveItemsToFile(string filename)
         {
             //Writes all details about TODO items to fileName.csv file
             //Every item is written in a separate line the following format:
@@ -49,8 +49,10 @@ namespace EisenhowerMatrixApp
 
         public void ArchiveItems()
         {
-            //Removes all TodoItem objects with a parameter isDone set to true
-            //from list todoItems in every element of dictionary todoQuarters
+            foreach(var quarter in TodoQuarters)
+            {
+                quarter.Value.ArchiveItems();
+            }
         }
 
         public override string ToString()
