@@ -6,9 +6,15 @@ namespace EisenhowerMatrixApp
     {
         private Dictionary<string, TodoQuarter> TodoQuarters;
 
-        public TodoMatrix()
+        public TodoMatrix() // TODO: is it proper way to declare this matrix?
         {
-            TodoQuarters = new Dictionary<string, TodoQuarter>();
+            TodoQuarters = new Dictionary<string, TodoQuarter>()
+            {
+                { "IU", new TodoQuarter() },
+                { "IN", new TodoQuarter() },
+                { "NU", new TodoQuarter() },
+                { "NN", new TodoQuarter() }
+            };
         }
 
         public Dictionary<string, TodoQuarter> GetQuarters()
