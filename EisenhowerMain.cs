@@ -26,13 +26,13 @@ namespace EisenhowerMatrixApp
             var list = importantUrgent.GetItems();
             foreach (var item in list)
             {
-                Console.WriteLine(item.GetStatus());
+                Console.WriteLine($"{item.GetTitle()} {item.GetStatus()}");
             }
             importantUrgent.ArchiveItems();
-            importantUrgent.AddItem("wyrzucic smieci", DateTime.Now.AddMonths(2));
+            //importantUrgent.AddItem("wyrzucic smieci", DateTime.Now.AddMonths(2));
             //var tasks = importantUrgent.GetItems();
-            
-            
+
+            Console.WriteLine("\nPo archiwizacji:");
             Console.WriteLine(importantUrgent.ToString());
             //foreach (var task in tasks)
             //{  }

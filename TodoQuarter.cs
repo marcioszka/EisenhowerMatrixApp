@@ -29,15 +29,9 @@ namespace EisenhowerMatrixApp
             TodoItems.RemoveAt(index);
         }
 
-        public void ArchiveItems()  // TODO: enumeration operation may not execute --> poprawic
+        public void ArchiveItems()
         {
-            //int index = 0;
-            //foreach (TodoItem item in TodoItems)
-            //{
-            //    if (item.GetStatus() == false) { TodoItems.RemoveAt(index); }
-            //    index++;
-            //}
-            //TodoItems.RemoveAll(foreach());
+            TodoItems.RemoveAll(item => !item.GetStatus());
         }
 
         public override string ToString()
