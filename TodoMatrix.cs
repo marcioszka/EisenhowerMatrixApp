@@ -35,8 +35,15 @@ namespace EisenhowerMatrixApp
 
         public void AddItemsFromFile(string filename)
         {
-            //Reads data from fileName.csv file and appends TodoItem objects to attributes todoItems in the properly TodoQuarter objects.
-            //Every item is written in a separate line in format:
+            string[] tasks = File.ReadAllLines(filename);
+            foreach (string task in tasks)
+            {
+                string[] taskDetails = task.Split('|');
+                //TodoQuarters[key].AddItem(taskDetails[0], taskDetails[1]);  //TODO: taskDetails[1] - parse to DateTime
+            }
+            //If the last element of line is an empty string,
+            //*isImportant* is equal to false - assigned to a not important TODO quarter.
+            //Otherwise item should be assign to an important TODO quarter.
             //title|day-month|is_important
         }
 
