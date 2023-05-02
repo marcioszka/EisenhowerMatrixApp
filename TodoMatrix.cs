@@ -6,7 +6,7 @@ namespace EisenhowerMatrixApp
     {
         private readonly Dictionary<string, TodoQuarter> _todoQuarters;
 
-        public TodoMatrix() // TODO: is it proper way to declare this matrix?
+        public TodoMatrix()
         {
             _todoQuarters = new Dictionary<string, TodoQuarter>()
             {
@@ -27,7 +27,7 @@ namespace EisenhowerMatrixApp
             return _todoQuarters[status];
         }
 
-        public void AddItem(string title, DateTime deadline, bool IsImportant = false)
+        public void AddItem(string title, DateTime deadline, bool isImportant = false)
         {
             string key = "UI";  // TODO: przekazac key od usera
             _todoQuarters[key].AddItem(title, deadline);
