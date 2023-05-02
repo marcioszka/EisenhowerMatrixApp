@@ -4,11 +4,11 @@ namespace EisenhowerMatrixApp
 {
     public class TodoMatrix
     {
-        private Dictionary<string, TodoQuarter> TodoQuarters;
+        private readonly Dictionary<string, TodoQuarter> _todoQuarters;
 
         public TodoMatrix() // TODO: is it proper way to declare this matrix?
         {
-            TodoQuarters = new Dictionary<string, TodoQuarter>()
+            _todoQuarters = new Dictionary<string, TodoQuarter>()
             {
                 { "IU", new TodoQuarter() },
                 { "IN", new TodoQuarter() },
@@ -19,18 +19,18 @@ namespace EisenhowerMatrixApp
 
         public Dictionary<string, TodoQuarter> GetQuarters()
         {
-            return TodoQuarters;
+            return _todoQuarters;
         }
 
         public TodoQuarter GetQuarter(string status)
         {
-            return TodoQuarters[status];
+            return _todoQuarters[status];
         }
 
         public void AddItem(string title, DateTime deadline, bool IsImportant = false)
         {
             string key = "UI";  // TODO: przekazac key od usera
-            TodoQuarters[key].AddItem(title, deadline);
+            _todoQuarters[key].AddItem(title, deadline);
         }
 
         public void AddItemsFromFile(string filename)
@@ -56,7 +56,7 @@ namespace EisenhowerMatrixApp
 
         public void ArchiveItems()
         {
-            foreach(var quarter in TodoQuarters)
+            foreach(var quarter in _todoQuarters)
             {
                 quarter.Value.ArchiveItems();
             }
