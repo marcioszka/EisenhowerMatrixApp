@@ -12,7 +12,7 @@ namespace EisenhowerMatrixApp
         public static string SetDeadlineYear(string day, string month)
         {
             
-            return $"{day}/{month}/2020";
+            return $"{day}/{month}/2023";
         }
 
         public static int ChangeStringToNumber(string number)
@@ -25,7 +25,7 @@ namespace EisenhowerMatrixApp
             switch (ChangeStringToNumber(month))
             {
                 case 2:
-                    return (ChangeStringToNumber(day) > 29 || ChangeStringToNumber(day) < 1);
+                    return (ChangeStringToNumber(day) > 28 || ChangeStringToNumber(day) < 1);
                 case 4:
                 case 6:
                 case 9:
@@ -38,7 +38,13 @@ namespace EisenhowerMatrixApp
 
         public static DateTime ParseStringToDateTime(string date)
         {
-            return DateTime.Parse(date);
+            return DateTime.Parse(date);    //TryParse(date, ...)
+        }
+
+        public static DateTime GetDeadline(string day, string month)
+        {
+            string date = SetDeadlineYear(day, month);
+            return ParseStringToDateTime(date);
         }
     }
 }
