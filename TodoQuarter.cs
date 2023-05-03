@@ -31,7 +31,7 @@ namespace EisenhowerMatrixApp
 
         public void ArchiveItems()
         {
-            _todoItems.RemoveAll(item => !item.GetStatus());
+            _todoItems.RemoveAll(item => item.GetStatus());
         }
 
         public override string ToString()
