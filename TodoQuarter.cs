@@ -7,38 +7,38 @@ namespace EisenhowerMatrixApp
 
     public class TodoQuarter
     {
-        private List<TodoItem> TodoItems;
+        private List<TodoItem> _todoItems;
 
         public TodoQuarter() 
         {
-            TodoItems = new List<TodoItem>();
+            _todoItems = new List<TodoItem>();
         }
 
         public List<TodoItem> GetItems()
         {
-            return TodoItems;
+            return _todoItems;
         }
 
         public void AddItem(string title, DateTime deadline) 
         {
-            TodoItems.Add(new TodoItem(title, deadline));
+            _todoItems.Add(new TodoItem(title, deadline));
         }
 
         public void RemoveItem(int index) 
         { 
-            TodoItems.RemoveAt(index);
+            _todoItems.RemoveAt(index);
         }
 
         public void ArchiveItems()
         {
-            TodoItems.RemoveAll(item => !item.GetStatus());
+            _todoItems.RemoveAll(item => !item.GetStatus());
         }
 
         public override string ToString()
         {
             string taskList = "";
             int index = 1;
-            foreach(TodoItem item in TodoItems) 
+            foreach(TodoItem item in _todoItems) 
             { 
                 taskList += $"{index}. {item.ToString()}\n";
                 index++;

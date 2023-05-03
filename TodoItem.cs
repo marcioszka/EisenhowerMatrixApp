@@ -5,30 +5,30 @@ namespace EisenhowerMatrixApp
 {
     public class TodoItem
     {
-        private string Title;
+        private string _title;
 
-        private DateTime Deadline;  // TODO: set year to 2020
+        private DateTime _deadline;
 
-        private bool IsDone;// = false;
+        private bool _isDone;
         [DefaultValue(false)]
 
         public TodoItem(string title, DateTime deadline)
         {
-            Title = title;
-            Deadline = deadline;
+            _title = title;
+            _deadline = deadline;
         }
 
-        public string GetTitle() { return Title; }
+        public string GetTitle() { return _title; }
 
-        public DateTime GetDeadline() { return Deadline; }
+        public DateTime GetDeadline() { return _deadline; }
 
-        private string ChangeDeadlineFormat() { return Deadline.ToString("d-M"); }
+        private string ChangeDeadlineFormat() { return _deadline.ToString("d-M"); }
 
-        public bool GetStatus() { return IsDone; }
+        public bool GetStatus() { return _isDone; }
 
         private string GetSymbolForStatus()
         {
-            switch (IsDone)
+            switch (_isDone)
             {
                 case true:
                     return "x";
@@ -39,17 +39,17 @@ namespace EisenhowerMatrixApp
 
         public void Mark()
         {
-            IsDone = true;
+            _isDone = true;
         }
 
         public void Unmark()
         {
-            IsDone = false;
+            _isDone = false;
         }
 
         public override string ToString()
         {
-            return $"[{GetSymbolForStatus()}] {ChangeDeadlineFormat()} {Title}";
+            return $"[{GetSymbolForStatus()}] {ChangeDeadlineFormat()} {_title}";
         }
     }
 
