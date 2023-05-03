@@ -18,5 +18,10 @@ namespace EisenhowerMatrixApp
             return Console.ReadLine();
         }
 
+        public static bool GetTaskImportance()
+        {
+            string importance = Console.ReadLine().ToLower();
+            return importance == "y" ? true : false;
+        }
     }
 }
