@@ -19,6 +19,11 @@ namespace EisenhowerMatrixApp
             return _todoItems;
         }
 
+        public TodoItem GetItem(int index)
+        {
+            return _todoItems[index];
+        }
+
         public void AddItem(string title, DateTime deadline) 
         {
             _todoItems.Add(new TodoItem(title, deadline));
