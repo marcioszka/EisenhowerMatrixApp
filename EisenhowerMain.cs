@@ -42,6 +42,22 @@ namespace EisenhowerMatrixApp
 
             //string list = taskList.ToString();
             //Console.WriteLine(list);
+
+            var date = StringHelper.SetDeadlineYear("26", "1");
+            Console.WriteLine(date);
+            var datum = DateTime.Parse(date);
+            Console.WriteLine(datum.ToString("d-M"));
+            
+
+            TodoMatrix organiser = new TodoMatrix();
+            organiser.AddItem("zdac hindi", DateTime.Now.AddDays(2));
+            organiser.AddItem("referat z sanskrytu", DateTime.Now.AddDays(3), true);
+            organiser.AddItem("ugotowac kluski", DateTime.Now.AddDays(15), true);
+            organiser.AddItem("obrac ziemniaki", DateTime.Now.AddDays(9));
+            organiser.AddItem("odrobki z literatury", DateTime.Now.AddDays(3));
+            organiser.AddItem("kupic nowa sukienke", DateTime.Now.AddDays(1), true);
+            organiser.AddItem("egzamin na hulajnoge", DateTime.Now.AddDays(7), true);
+            Console.WriteLine(organiser.ToString());
         }
     }
 }
