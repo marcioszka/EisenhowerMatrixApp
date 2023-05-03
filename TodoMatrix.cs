@@ -84,8 +84,12 @@ namespace EisenhowerMatrixApp
 
         public override string ToString()
         {
-            //Returns a todoQuarters list (an Eisenhower todoMatrix) formatted to string.
-            return "";
+            string matrix = "";
+            foreach (var quarter in _todoQuarters)
+            {
+                matrix += $"{quarter.Key}\n{quarter.Value.ToString()}";
+            }
+            return matrix;
         }
     }
 
