@@ -29,8 +29,28 @@ namespace EisenhowerMatrixApp
 
         public void AddItem(string title, DateTime deadline, bool isImportant = false)
         {
-            string key = "UI";  // TODO: przekazac key od usera
-            _todoQuarters[key].AddItem(title, deadline);
+            var isUrgent = IsItemUrgent(deadline);
+            if (isImportant && isUrgent) 
+            {
+                _todoQuarters["IU"].AddItem(title, deadline);
+            }
+            else if (isImportant && !isUrgent) 
+            {
+                _todoQuarters["IN"].AddItem(title, deadline);
+            }
+            else if (!isImportant && isUrgent)
+            {
+                _todoQuarters["NU"].AddItem(title, deadline);
+            }
+            else
+            {
+                _todoQuarters["NN"].AddItem(title, deadline);
+            }
+        }
+
+        private bool IsItemUrgent(DateTime deadline) 
+        { 
+            return (deadline - DateTime.Now).TotalDays <= 3; 
         }
 
         public void AddItemsFromFile(string filename)
