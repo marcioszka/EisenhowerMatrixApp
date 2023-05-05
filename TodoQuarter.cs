@@ -44,8 +44,9 @@ namespace EisenhowerMatrixApp
             string taskList = "";
             int index = 1;
             foreach(TodoItem item in _todoItems) 
-            { 
+            {
                 taskList += $"{index}. {item.ToString()}\n";
+                //TodoItem.ShowColoredTodoItem(item);
                 index++;
             }
             return taskList;

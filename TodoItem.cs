@@ -32,7 +32,7 @@ namespace EisenhowerMatrixApp
             {
                 case true:
                     return "x";
-                case false: 
+                case false:
                     return " ";
             }
         }
@@ -45,6 +45,26 @@ namespace EisenhowerMatrixApp
         public void Unmark()
         {
             _isDone = false;
+        }
+
+        public static void ShowColoredTodoItem(TodoItem item)
+        {
+            DateTime deadline = item._deadline;
+            TimeSpan timeLeft = deadline - DateTime.Today;
+
+            if (timeLeft.TotalDays > 3)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            else if (timeLeft.TotalDays > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            //Console.ResetColor();
         }
 
         public override string ToString()
