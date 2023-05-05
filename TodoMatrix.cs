@@ -27,24 +27,24 @@ namespace EisenhowerMatrixApp
             return _todoQuarters[status];
         }
 
-        public void AddItem(string title, DateTime deadline, bool isImportant = false)
+        public void AddItem(string title, DateTime deadline, bool isImportant = false, bool isDone = false)
         {
             var isUrgent = IsItemUrgent(deadline);
             if (isImportant && isUrgent) 
             {
-                _todoQuarters["IU"].AddItem(title, deadline);
+                _todoQuarters["IU"].AddItem(title, deadline, isDone);
             }
             else if (isImportant && !isUrgent) 
             {
-                _todoQuarters["IN"].AddItem(title, deadline);
+                _todoQuarters["IN"].AddItem(title, deadline, isDone);
             }
             else if (!isImportant && isUrgent)
             {
-                _todoQuarters["NU"].AddItem(title, deadline);
+                _todoQuarters["NU"].AddItem(title, deadline, isDone);
             }
             else
             {
-                _todoQuarters["NN"].AddItem(title, deadline);
+                _todoQuarters["NN"].AddItem(title, deadline, isDone);
             }
         }
 

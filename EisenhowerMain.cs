@@ -7,6 +7,19 @@ namespace EisenhowerMatrixApp
     {
         static public void Main(string[] args)
         {
+            // FOR USING CSV HELPER IT IS NECCESARY TO INSTALL IT BY: dotnet add package CsvHelper
+            // CSV HANDLER USAGE EXAMPLE (NO EXCEPTION HANDLING)
+            // TodoMatrix taskPlanner = new TodoMatrix();
+            // for (int i = 0; i < 10; i++)
+            // {
+            //     taskPlanner.AddItem($"Task{i}",StringHelper.GetDeadline((i + 1).ToString(), (i + 1).ToString()),i%2==1);
+            // }
+            // Console.WriteLine("Created planner:");
+            // Display.PrintPlanner(taskPlanner);
+            // CsvHandler.SaveMatrixToCsv(taskPlanner);
+            // TodoMatrix readPlanner = CsvHandler.ReadMatrixFromCsv();
+            // Console.WriteLine("Read planner:");
+            // Display.PrintPlanner(readPlanner);
             TodoMatrix taskPlanner = new TodoMatrix();
             var userChoice = "";
             do
