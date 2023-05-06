@@ -17,17 +17,11 @@ namespace EisenhowerMatrixApp
             };
         }
 
-        public Dictionary<string, TodoQuarter> GetQuarters()
-        {
-            return _todoQuarters;
-        }
+        public Dictionary<string, TodoQuarter> GetQuarters() => _todoQuarters;
 
-        public TodoQuarter GetQuarter(string status)
-        {
-            return _todoQuarters[status];
-        }
+        public TodoQuarter GetQuarter(string status) => _todoQuarters[status];
 
-        public void AddItem(string title, DateTime deadline, bool isImportant = false)
+        public void AddItem(string title, DateTime deadline, bool isImportant = false) //TODO: f. wybierajaca cwiartke pod wzgledem tych dwóch argumentów
         {
             var isUrgent = IsItemUrgent(deadline);
             if (isImportant && isUrgent) 
