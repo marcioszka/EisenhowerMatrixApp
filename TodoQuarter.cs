@@ -19,11 +19,14 @@ namespace EisenhowerMatrixApp
 
         public TodoItem GetItem(int index) => _todoItems[index];
 
+
         public void AddItem(string title, DateTime deadline) => _todoItems.Add(new TodoItem(title, deadline));
+
+        public void AddItem(string title, DateTime deadline, bool isDone = false) => _todoItems.Add(new TodoItem(title, deadline, isDone));
 
         public void RemoveItem(int index) => _todoItems.RemoveAt(index);
 
-        public void ArchiveItems() => _todoItems.RemoveAll(item => item.GetStatus()); //better: item.IsDone() - bardziej czytelne niz GetStatus()
+        public void ArchiveItems() => _todoItems.RemoveAll(item => item.IsDone());
 
         public override string ToString()
         {

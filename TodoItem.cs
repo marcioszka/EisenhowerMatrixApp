@@ -9,7 +9,7 @@ namespace EisenhowerMatrixApp
 
         private DateTime _deadline;
 
-        private bool _isDone = false;
+        private bool _isDone;
 
         public TodoItem(string title, DateTime deadline, bool isDone = false)
         {
@@ -24,18 +24,9 @@ namespace EisenhowerMatrixApp
 
         private string ChangeDeadlineFormat() => _deadline.ToString("d-M");
 
-        public bool GetStatus() => _isDone;
+        public bool IsDone() => _isDone;
 
-        private string GetSymbolForStatus() //return _isDone ? "x" : " ";
-        {
-            switch (_isDone)
-            {
-                case true:
-                    return "x";
-                case false: 
-                    return " ";
-            }
-        }
+        private string GetSymbolForStatus() => _isDone ? "x" : " ";
 
         public void Mark()
         {
