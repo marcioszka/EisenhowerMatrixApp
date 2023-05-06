@@ -10,12 +10,13 @@ namespace EisenhowerMatrixApp
         private DateTime _deadline;
 
         private bool _isDone;
-        [DefaultValue(false)]
+        //[DefaultValue(false)]
 
         public TodoItem(string title, DateTime deadline)
         {
             _title = title;
             _deadline = deadline;
+            _isDone = false;
         }
 
         public string GetTitle() { return _title; }
