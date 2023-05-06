@@ -8,7 +8,7 @@ namespace EisenhowerMatrixApp
 {
     public class Display
     {
-        private static string[] MainMenu = { "Welcome to Eisenhower Matrix App, your task planner!\n", "Choose following options:", "[A] Add new task", "[S] See your planner", "[C] Choose task to edit", "[D] Delete task from planner", "[X] Exit application" };
+        private static string[] MainMenu = { "Welcome to Eisenhower Matrix App, your task planner!\n", "Choose following options:", "[A] Add new task", "[S] See your planner", "[C] Change status of a task", "[D] Delete task from planner", "[X] Exit application" };
 
         private static string[] TaskMenu = { "[A] Add another task", "[S] See your planner", "[M] Back to Main menu" };
 
@@ -34,7 +34,8 @@ namespace EisenhowerMatrixApp
         }
 
         public static void PrintPlanner(TodoMatrix planner)
-        { 
+        {
+            Console.Clear();
             Console.WriteLine(planner.ToString()); 
         }
 
