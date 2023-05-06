@@ -24,7 +24,9 @@ namespace EisenhowerMatrixApp
             { "isAdded", "You've added your task successfully.\n"},
             { "isRemoved", "You've removed your task successfully.\n"},
             { "noItem", "There is no such task in your planner.\n"},
-            { "status", "Status have been succesfully changed.\n"} };
+            { "status", "Status have been succesfully changed.\n"},
+            { "plannerSaved", "\nToo much to do? Don't worry, we'll keep your planner saved." },
+            { "exit", "\nPress any key to exit." } };
 
         public static void PrintMenu()
         {
