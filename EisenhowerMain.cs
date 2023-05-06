@@ -21,57 +21,82 @@ namespace EisenhowerMatrixApp
             // Console.WriteLine("Read planner:");
             // Display.PrintPlanner(readPlanner);
             TodoMatrix taskPlanner = new TodoMatrix();
-            var userChoice = "";
+            string userChoice = "";
+            Display.PrintMessage("welcome");
             do
             {
                 Display.PrintMenu();
-                userChoice = Input.GetMenuOption();
-            
+                userChoice = Input.GetMenuOption();            
                 switch (userChoice.ToUpper())
                 {
                     case "A":
-                        Display.PrintMessage("title");
-                        var title = Input.GetUserInput();
-                        //bool isDateOK = false;        //TODO: validate date and numbers/letters
-                        //do {
-                        Display.PrintMessage("day");
-                        var day = Input.GetUserInput();
-                        Display.PrintMessage("month");
-                        var month = Input.GetUserInput();
-                        var isDateOK = StringHelper.IsDateProper(day, month);
-                        // }
-                        //while(!isDateOK);
-                        var deadline = StringHelper.GetDeadline(day, month);
-                        Display.PrintMessage("importance");
-                        var isImportant = Input.GetTaskImportance();
-                        taskPlanner.AddItem(title, deadline, isImportant);
+                        AddItemToList(taskPlanner);
                         break;
                     case "S":
                         Display.PrintPlanner(taskPlanner);  //TODO: finish displaying quarters
                         break;
                     case "D":
-                        Display.PrintMessage("quarter");
-                        var quarterChoice = Input.GetUserInput();
-                        var quarter = taskPlanner.GetQuarter(quarterChoice);
-                        Display.PrintMessage("index");
-                        var indexChoice = Input.GetUserInput();
-                        var index = StringHelper.ChangeStringToNumber(indexChoice);
-                        quarter.RemoveItem(index - 1);      //TODO: walidacja indexu a liczby elementów z listy
+                        RemoveItemFromList(taskPlanner);
                         break;
                     case "C":
-                        Display.PrintMessage("quarter");
-                        var quarterChoiceC = Input.GetUserInput();
-                        var quarterC = taskPlanner.GetQuarter(quarterChoiceC);
-                        Display.PrintMessage("index");
-                        var indexChoiceC = Input.GetUserInput();
-                        var indexC = StringHelper.ChangeStringToNumber(indexChoiceC);
-                        if(quarterC.GetItem(indexC - 1).IsDone()) { quarterC.GetItem(indexC - 1).Unmark(); }
-                        else { quarterC.GetItem(indexC - 1).Mark(); }
+                        ChangeItemStatus(taskPlanner);
+                        break;
+                    case "R":
+                        //Display from file
                         break;
                 }
             }
             while (userChoice.ToUpper()!="X");
             //archive matrix
         }
+
+        static public void AddItemToList(TodoMatrix matrix)
+        {
+            var title = Input.GetTaskTitle();
+            var date = Input.GetTaskDate();
+            var deadline = StringHelper.ParseStringToDateTime(date);
+            bool isImportant = Input.GetTaskImportance();
+            matrix.AddItem(title, deadline, isImportant);
+            Display.PrintMessage("isAdded");
+        }
+
+        static public void RemoveItemFromList(TodoMatrix matrix)
+        {
+            var quarterChoice = Input.GetQuarterOption(matrix);
+            var quarter = matrix.GetQuarter(quarterChoice);
+            int index = Input.GetIndexOfItem();
+            if (index > quarter.GetItems().Count) 
+            {
+                Console.Clear();
+                Display.PrintMessage("noItem"); 
+            }
+            else 
+            {
+                Console.Clear();
+                quarter.RemoveItem(index - 1);
+                Display.PrintMessage("isRemoved");
+            }
+        }
+
+        static public void ChangeItemStatus(TodoMatrix matrix)
+        {
+            var quarterChoice = Input.GetQuarterOption(matrix);
+            var quarter = matrix.GetQuarter(quarterChoice);
+            int index = Input.GetIndexOfItem();
+            if (index > quarter.GetItems().Count)
+            {
+                Console.Clear();
+                Display.PrintMessage("noItem");
+            }
+            else
+            {
+                var item = quarter.GetItem(index - 1);
+                if (item.IsDone()) { item.Unmark(); }
+                else { item.Mark(); }
+            }
+            Console.Clear();
+            Display.PrintMessage("status");
+        }
     }
+
 }
