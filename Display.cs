@@ -12,6 +12,8 @@ namespace EisenhowerMatrixApp
 
         private static string[] TaskMenu = { "[A] Add another task", "[S] See your planner", "[M] Back to Main menu" };
 
+        private static string[] MatrixKeys = { "IU", "IN", "NU", "NN" };
+
         private static Dictionary<string, string> UserCommunication = new Dictionary<string, string> {
             { "welcome", "Welcome to Eisenhower Matrix App, your task planner!\n"},
             { "title", "Write the title of your upcoming task:" }, 
@@ -44,7 +46,12 @@ namespace EisenhowerMatrixApp
         public static void PrintPlanner(TodoMatrix planner)
         {
             Console.Clear();
-            Console.WriteLine("\t\tURGENT\t\t|\t\tNOT URGENT\t\t");
+            //Console.WriteLine("\t\tU R G E N T\t\t|\t\tN O T  U R G E N T\t\t");
+            //for(int i = 0; i < MatrixKeys.Length; i=1+2) 
+            //{
+            //    Console.WriteLine($"\n\nI\nM\nP\nO\nR\nT\nA\nN\nT\n\n\n + {planner.GetQuarter(MatrixKeys[i]).ToString()}+\t\t\t + {planner.GetQuarter(MatrixKeys[i+1]).ToString()}");
+            //    Console.WriteLine("\n\nI\nM\nP\nO\nR\nT\nA\nN\nT\n\n\n");
+            //}
             Console.WriteLine(planner.ToString()); 
         }
 
@@ -55,6 +62,24 @@ namespace EisenhowerMatrixApp
             foreach (string option in TaskMenu)
             {
                 Console.WriteLine(option);
+            }
+        }
+
+        public static void ShowColoredTodoItem(TodoItem item)
+        {
+            DateTime deadline = item.GetDeadline();
+            var timeLeft = (deadline - DateTime.Now).TotalDays;
+            if (timeLeft > 3)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            else if (timeLeft > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
             }
         }
     }

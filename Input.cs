@@ -61,11 +61,6 @@ namespace EisenhowerMatrixApp
             return date;
         }
 
-        public static string GetUserInput()
-        {
-            return Console.ReadLine();
-        }
-
         public static bool GetTaskImportance()
         {
             Console.Clear();

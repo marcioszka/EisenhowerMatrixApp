@@ -85,7 +85,8 @@ namespace EisenhowerMatrixApp
             string matrix = "";
             foreach (var quarter in _todoQuarters)
             {
-                matrix += $"{quarter.Key}\n{quarter.Value.ToString()}";
+                matrix += $"{quarter.Key}\n{quarter.Value.ToString()}\n\n"; //   matrix += $"{quarter.Key}\n{quarter.Value.ToString()}";
+
             }
             return matrix;
         }
