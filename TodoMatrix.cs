@@ -49,8 +49,9 @@ namespace EisenhowerMatrixApp
         }
 
         private bool IsItemUrgent(DateTime deadline) 
-        { 
-            return (deadline - DateTime.Now).TotalDays <= 3; 
+        {
+            int timeSpan = 3;
+            return (deadline - DateTime.Now).TotalDays <= timeSpan; 
         }
 
         public void AddItemsFromFile(string filename)
