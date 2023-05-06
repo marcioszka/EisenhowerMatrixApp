@@ -9,25 +9,24 @@ namespace EisenhowerMatrixApp
 
         private DateTime _deadline;
 
-        private bool _isDone;
-        //[DefaultValue(false)]
+        private bool _isDone = false;
 
-        public TodoItem(string title, DateTime deadline)
+        public TodoItem(string title, DateTime deadline, bool isDone = false)
         {
             _title = title;
             _deadline = deadline;
-            _isDone = false;
+            _isDone = isDone;
         }
 
-        public string GetTitle() { return _title; }
+        public string GetTitle() => _title;
 
-        public DateTime GetDeadline() { return _deadline; }
+        public DateTime GetDeadline() => _deadline; 
 
-        private string ChangeDeadlineFormat() { return _deadline.ToString("d-M"); }
+        private string ChangeDeadlineFormat() => _deadline.ToString("d-M");
 
-        public bool GetStatus() { return _isDone; }
+        public bool GetStatus() => _isDone;
 
-        private string GetSymbolForStatus()
+        private string GetSymbolForStatus() //return _isDone ? "x" : " ";
         {
             switch (_isDone)
             {
