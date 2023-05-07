@@ -35,8 +35,11 @@ namespace EisenhowerMatrixApp
                 }
             }
             while (userChoice.ToUpper()!="X");
-            CsvHandler.SaveMatrixToCsv(taskPlanner);
-            Display.PrintMessage("plannerSaved");
+            SavePlannerToFile(taskPlanner);
+            
+            //taskPlanner.ArchiveItems();
+            //CsvHandler.SaveMatrixToCsv(taskPlanner);
+            //Display.PrintMessage("plannerSaved");
             Display.PrintMessage("exit");
             Environment.Exit(0);
         }
@@ -87,6 +90,13 @@ namespace EisenhowerMatrixApp
             }
             Console.Clear();
             Display.PrintMessage("status");
+        }
+
+        static public void SavePlannerToFile(TodoMatrix matrix)
+        {
+            matrix.ArchiveItems();
+            CsvHandler.SaveMatrixToCsv(matrix);
+            Display.PrintMessage("plannerSaved");
         }
     }
 
