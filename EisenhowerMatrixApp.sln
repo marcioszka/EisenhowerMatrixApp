@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EisenhowerMatrixApp", "EisenhowerMatrixApp.csproj", "{2D6B1646-A3D3-4C2A-8674-DA43073D7C06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EisenhowerMatrixApp", "EisenhowerMatrixApp.csproj", "{2D6B1646-A3D3-4C2A-8674-DA43073D7C06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4BED81BF-16D6-4DE1-8C84-5170EE307538}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EisenhowerMatrixApp.UnitTests", "..\EisenhowerMatrixApp.UnitTests\EisenhowerMatrixApp.UnitTests.csproj", "{66075535-D086-4B12-AAFF-A9244391A1F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{2D6B1646-A3D3-4C2A-8674-DA43073D7C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D6B1646-A3D3-4C2A-8674-DA43073D7C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D6B1646-A3D3-4C2A-8674-DA43073D7C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66075535-D086-4B12-AAFF-A9244391A1F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66075535-D086-4B12-AAFF-A9244391A1F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66075535-D086-4B12-AAFF-A9244391A1F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66075535-D086-4B12-AAFF-A9244391A1F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{66075535-D086-4B12-AAFF-A9244391A1F3} = {4BED81BF-16D6-4DE1-8C84-5170EE307538}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E6CF859-E0A1-4CB9-AC0C-74C41C69F413}

@@ -7,11 +7,16 @@ namespace EisenhowerMatrixApp
 
     public class TodoQuarter
     {
-        private List<TodoItem> _todoItems;
+        public List<TodoItem> _todoItems;
 
         public TodoQuarter() 
         {
             _todoItems = new List<TodoItem>();
+        }
+
+        public TodoQuarter(List<TodoItem> todoItems)
+        {
+            _todoItems = todoItems;
         }
 
         public List<TodoItem> GetItems() => _todoItems;
