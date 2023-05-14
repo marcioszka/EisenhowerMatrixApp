@@ -46,12 +46,6 @@ namespace EisenhowerMatrixApp
         public static void PrintPlanner(TodoMatrix planner)
         {
             Console.Clear();
-            //Console.WriteLine("\t\tU R G E N T\t\t|\t\tN O T  U R G E N T\t\t");
-            //for(int i = 0; i < MatrixKeys.Length; i=1+2) 
-            //{
-            //    Console.WriteLine($"\n\nI\nM\nP\nO\nR\nT\nA\nN\nT\n\n\n + {planner.GetQuarter(MatrixKeys[i]).ToString()}+\t\t\t + {planner.GetQuarter(MatrixKeys[i+1]).ToString()}");
-            //    Console.WriteLine("\n\nI\nM\nP\nO\nR\nT\nA\nN\nT\n\n\n");
-            //}
             Console.WriteLine(planner.ToString()); 
         }
 

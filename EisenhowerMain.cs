@@ -36,10 +36,6 @@ namespace EisenhowerMatrixApp
             }
             while (userChoice.ToUpper()!="X");
             SavePlannerToFile(taskPlanner);
-            
-            //taskPlanner.ArchiveItems();
-            //CsvHandler.SaveMatrixToCsv(taskPlanner);
-            //Display.PrintMessage("plannerSaved");
             Display.PrintMessage("exit");
             Environment.Exit(0);
         }
