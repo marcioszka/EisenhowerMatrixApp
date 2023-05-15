@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EisenhowerMatrixApp
+namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
 {
     public static class StringHelper
     {

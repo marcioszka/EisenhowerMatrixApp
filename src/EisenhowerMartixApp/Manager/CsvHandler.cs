@@ -1,13 +1,14 @@
 ﻿using System.Globalization;
 using CsvHelper;
+using EisenhowerMatrixApp.src.EisenhowerMartixApp.Model;
 
-namespace EisenhowerMatrixApp;
+namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager;
 
 static class CsvHandler
 {
     private const string CsvStoreFolder = "savedTodos";
-    private const string DefaultFileName = "defaultMatrix.csv" ; 
-    public static void SaveMatrixToCsv(TodoMatrix matrix, string filename=DefaultFileName)
+    private const string DefaultFileName = "defaultMatrix.csv";
+    public static void SaveMatrixToCsv(TodoMatrix matrix, string filename = DefaultFileName)
     {
         List<CsvTodoItem> csvTodoItems = CsvTodoItem.PrepareListForCsvWriting(matrix);
         if (!Directory.Exists(CsvStoreFolder))

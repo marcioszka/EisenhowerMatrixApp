@@ -1,25 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="EisenhowerMatrixApp\**" />
-    <EmbeddedResource Remove="EisenhowerMatrixApp\**" />
-    <None Remove="EisenhowerMatrixApp\**" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>..\..\EisenhowerMatrixApp\docs\EisenhowerMatrixDb\EisenhowerMatrixDb.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="30.0.1" />
-    <PackageReference Include="DataTablePrettyPrinter" Version="0.2.0" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="savedTodos\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="EisenhowerMatrixApp\**" />
+		<EmbeddedResource Remove="EisenhowerMatrixApp\**" />
+		<None Remove="EisenhowerMatrixApp\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CsvHelper" Version="30.0.1" />
+		<PackageReference Include="DataTablePrettyPrinter" Version="0.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="savedTodos\" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="4.0.0" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+	</ItemGroup>
+
 
 </Project>

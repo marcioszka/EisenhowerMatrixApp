@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EisenhowerMatrixApp.src.EisenhowerMartixApp.Model;
 
-namespace EisenhowerMatrixApp
+namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
 {
     public class Input
     {

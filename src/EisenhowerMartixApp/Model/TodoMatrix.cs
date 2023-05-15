@@ -1,6 +1,6 @@
 using System;
 
-namespace EisenhowerMatrixApp
+namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
 {
     public class TodoMatrix
     {
@@ -80,6 +80,7 @@ namespace EisenhowerMatrixApp
             }
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             string matrix = "";

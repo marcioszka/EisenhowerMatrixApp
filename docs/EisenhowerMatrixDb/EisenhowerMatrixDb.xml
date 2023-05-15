@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EisenhowerMatrixApp</name>
+    </assembly>
+    <members>
+        <member name="M:EisenhowerMatrixApp.Model.TodoItem.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:EisenhowerMatrixApp.Model.TodoQuarter.ToString">
+            <inheritdoc/>
+        </member>
+		<member name="M:EisenhowerMatrixApp.Model.TodoMatrix.ToString">
+			<inheritdoc/>
+		</member>
+        <member name="M:EisenhowerMatrixApp.Model.ITodoItemDao.Add(EisenhowerMatrixApp.Model.TodoItem)">
+            <summary>
+            Adds a new object to the database and sets the new ID.
+            </summary>
+            <param name="todoitem">A new object, with ID not yet set (null). </param>
+        </member>
+        <member name="M:EisenhowerMatrixApp.Model.ITodoItemDao.Update(EisenhowerMatrixApp.Model.TodoItem)">
+            <summary>
+            Updates existing object's data in the database.
+            </summary>
+            <param name="todoitem">An object from the database, with ID already set.</param>
+        </member>
+        <member name="M:EisenhowerMatrixApp.Model.ITodoItemDao.Get(System.Int32)">
+            <summary>
+            Get object by ID.
+            </summary>
+            <param name="id">ID to search by</param>
+            <returns>An object with a given ID, or null if not found.</returns>
+        </member>
+        <member name="M:EisenhowerMatrixApp.Model.ITodoItemDao.GetAll">
+            <summary>
+            Get all objects.
+            </summary>
+            <returns>List of all objects of this type in the database.</returns>
+        </member>
+        
+    </members>
+</doc>

@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace EisenhowerMatrixApp
+namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
 {
     public class TodoItem
     {
@@ -38,6 +38,7 @@ namespace EisenhowerMatrixApp
             _isDone = false;
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"[{GetSymbolForStatus()}] {ChangeDeadlineFormat()} {_title}";

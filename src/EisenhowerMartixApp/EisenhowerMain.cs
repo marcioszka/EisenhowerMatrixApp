@@ -1,8 +1,11 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Threading.Tasks;
+using EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager;
+using EisenhowerMatrixApp.src.EisenhowerMartixApp.Model;
+using EisenhowerMatrixApp.src.EisenhowerMatrixApp.View;
 
-namespace EisenhowerMatrixApp
+namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
 {
     public class EisenhowerMain
     {
@@ -36,7 +39,7 @@ namespace EisenhowerMatrixApp
                 }
             }
             while (userChoice.ToUpper()!="X");
-            SavePlannerToFile(taskPlanner);
+            //SavePlannerToFile(taskPlanner);
             Display.PrintMessage("exit");
             Environment.Exit(0);
         }
@@ -89,12 +92,12 @@ namespace EisenhowerMatrixApp
             Display.PrintMessage("status");
         }
 
-        static public void SavePlannerToFile(TodoMatrix matrix)
-        {
-            matrix.ArchiveItems();
-            CsvHandler.SaveMatrixToCsv(matrix);
-            Display.PrintMessage("plannerSaved");
-        }
+        //static public void SavePlannerToFile(TodoMatrix matrix)
+        //{
+        //    matrix.ArchiveItems();
+        //    CsvHandler.SaveMatrixToCsv(matrix);
+        //    Display.PrintMessage("plannerSaved");
+        //}
     }
 
 }

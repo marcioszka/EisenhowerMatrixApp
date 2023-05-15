@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EisenhowerMatrixApp
+namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
 {
 
     public class TodoQuarter
@@ -28,6 +28,7 @@ namespace EisenhowerMatrixApp
 
         public void ArchiveItems() => _todoItems.RemoveAll(item => item.IsDone());
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             string taskList = "";

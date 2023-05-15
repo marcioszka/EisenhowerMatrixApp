@@ -1,7 +1,7 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration.Attributes;
+﻿using CsvHelper.Configuration.Attributes;
+using EisenhowerMatrixApp.src.EisenhowerMartixApp.Model;
 
-namespace EisenhowerMatrixApp;
+namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager;
 
 public class CsvTodoItem
 {
@@ -36,16 +36,16 @@ public class CsvTodoItem
         DeadlineDay = deadlineDay;
         IsImportant = isImportant;
     }
-    
+
     public static List<CsvTodoItem> PrepareListForCsvWriting(TodoMatrix matrix)
     {
         List<CsvTodoItem> csvPreparedTodos = new List<CsvTodoItem>();
         foreach (var quarter in matrix.GetQuarters())
         {
             bool important = quarter.Key.ToLower()[0] == 'i';
-            foreach(TodoItem item in quarter.Value.GetItems())
+            foreach (TodoItem item in quarter.Value.GetItems())
             {
-                csvPreparedTodos.Add(new CsvTodoItem(item, important));                
+                csvPreparedTodos.Add(new CsvTodoItem(item, important));
             }
         }
         return csvPreparedTodos;
@@ -56,7 +56,7 @@ public class CsvTodoItem
         TodoMatrix matrix = new TodoMatrix();
         foreach (CsvTodoItem csvTodoItem in csvTodoItems)
         {
-            matrix.AddItem(csvTodoItem.Title, new DateTime(csvTodoItem.DeadlineYear, csvTodoItem.DeadlineMonth,csvTodoItem.DeadlineDay), csvTodoItem.IsImportant, csvTodoItem.IsDone);
+            matrix.AddItem(csvTodoItem.Title, new DateTime(csvTodoItem.DeadlineYear, csvTodoItem.DeadlineMonth, csvTodoItem.DeadlineDay), csvTodoItem.IsImportant, csvTodoItem.IsDone);
         }
         return matrix;
     }
