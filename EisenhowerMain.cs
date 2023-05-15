@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Threading.Tasks;
 
 namespace EisenhowerMatrixApp
@@ -20,7 +21,7 @@ namespace EisenhowerMatrixApp
                         AddItemToList(taskPlanner);
                         break;
                     case "S":
-                        Display.PrintPlanner(taskPlanner);  //TODO: finish displaying quarters
+                        Display.PrintPlanner(taskPlanner);
                         break;
                     case "D":
                         RemoveItemFromList(taskPlanner);
@@ -36,10 +37,6 @@ namespace EisenhowerMatrixApp
             }
             while (userChoice.ToUpper()!="X");
             SavePlannerToFile(taskPlanner);
-            
-            //taskPlanner.ArchiveItems();
-            //CsvHandler.SaveMatrixToCsv(taskPlanner);
-            //Display.PrintMessage("plannerSaved");
             Display.PrintMessage("exit");
             Environment.Exit(0);
         }
