@@ -19,10 +19,6 @@ namespace EisenhowerMatrixApp
 
         private const int QUARTER_NUMBER = 4;
 
-        //private const string important = " IMPORTANT ";
-
-        //private const string notImportant = " NOT IMPORTANT ";
-
         private static Dictionary<string, string> UserCommunication = new Dictionary<string, string> {
             { "welcome", "Welcome to Eisenhower Matrix App, your task planner!\n"},
             { "title", "Write the title of your upcoming task:" }, 
@@ -41,16 +37,10 @@ namespace EisenhowerMatrixApp
 
         public static void PrintMenu()
         {
-            foreach (string option in MainMenu)
-            {
-                Console.WriteLine(option);
-            }
+            foreach (string option in MainMenu) { Console.WriteLine(option); }
         }
 
-        public static void PrintMessage(string message)
-        {
-            Console.WriteLine(UserCommunication[message]);
-        }
+        public static void PrintMessage(string message) => Console.WriteLine(UserCommunication[message]);
 
         public static void PrintPlanner(TodoMatrix planner)
         {
@@ -109,18 +99,9 @@ namespace EisenhowerMatrixApp
             string task = item.ToString();
             DateTime deadline = item.GetDeadline();
             var timeLeft = (deadline - DateTime.Now).TotalDays;
-            if (!item.IsDone() && timeLeft > 3)
-            {
-                return PrintGreen(task);
-            }
-            else if (!item.IsDone() && timeLeft > 0)
-            {
-                return PrintYellow(task);
-            }
-            else if (!item.IsDone() && timeLeft==0)
-            {
-                return PrintRed(task);
-            }
+            if (!item.IsDone() && timeLeft > 3) { return PrintGreen(task); }
+            else if (!item.IsDone() && timeLeft > 0) { return PrintYellow(task); }
+            else if (!item.IsDone() && timeLeft==0) { return PrintRed(task); }
             else { return PrintWhite(task); }
         }
 
@@ -134,21 +115,18 @@ namespace EisenhowerMatrixApp
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             return task;
-
         }
 
         public static string PrintRed(string task)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             return task;
-
         }
 
         public static string PrintWhite(string task)
         {
             Console.ForegroundColor = ConsoleColor.White;
             return task;
-
         }
     }
 }
