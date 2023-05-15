@@ -33,12 +33,12 @@ SELECT SCOPE_IDENTITY();
 ";
 
                 command.CommandText = insertTodoItemSql;
-                command.Parameters.AddWithValue("@Title", TodoItem.Title);
-                command.Parameters.AddWithValue("@Deadline", TodoItem.Deadline);
-                command.Parameters.AddWithValue("@IsDone", TodoItem.IsDone);
+                command.Parameters.AddWithValue("@Title", todoItem.GetTitle());
+                command.Parameters.AddWithValue("@Deadline", todoItem.GetDeadline());
+                command.Parameters.AddWithValue("@IsDone", todoItem.IsDone());
 
-                int authorId = Convert.ToInt32(command.ExecuteScalar());
-                author.Id = authorId;
+                int todoItemId = Convert.ToInt32(command.ExecuteScalar());
+                author.Id = todoItemId;
             }
             catch (SqlException exception)
             {
