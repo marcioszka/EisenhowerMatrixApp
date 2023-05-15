@@ -26,7 +26,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
 
                 string insertTodoItemSql =
                     @"
-INSERT INTO eisenhower (title, deadline, is_done)
+INSERT INTO item (title, deadline, is_done)
 VALUES (@Title, @Deadline, @IsDone);
 
 SELECT SCOPE_IDENTITY();
@@ -37,8 +37,8 @@ SELECT SCOPE_IDENTITY();
                 command.Parameters.AddWithValue("@Deadline", todoItem.GetDeadline());
                 command.Parameters.AddWithValue("@IsDone", todoItem.IsDone());
 
-                int todoItemId = Convert.ToInt32(command.ExecuteScalar());
-                author.Id = todoItemId;
+                int todoItemId = Convert.ToInt32(command.ExecuteScalar()); // trzeba by dodac w todoItemDao czy cos pole id ???
+                //author.Id = todoItemId;
             }
             catch (SqlException exception)
             {

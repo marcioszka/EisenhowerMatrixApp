@@ -92,12 +92,12 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
             Display.PrintMessage("status");
         }
 
-        //static public void SavePlannerToFile(TodoMatrix matrix)
-        //{
-        //    matrix.ArchiveItems();
-        //    CsvHandler.SaveMatrixToCsv(matrix);
-        //    Display.PrintMessage("plannerSaved");
-        //}
+        static public void SavePlannerToFile(TodoMatrix matrix)
+        {
+            matrix.ArchiveItems();
+            CsvHandler.SaveMatrixToCsv(matrix);
+            Display.PrintMessage("plannerSaved");
+        }
     }
 
 }
