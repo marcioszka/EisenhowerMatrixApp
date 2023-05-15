@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,12 @@ namespace EisenhowerMatrixApp
 
         private static string[] MatrixKeys = { "IU", "IN", "NU", "NN" };
 
+        private const int QUARTER_NUMBER = 4;
+
+        private const string important = " IMPORTANT ";
+
+        private const string notImportant = " NOT IMPORTANT ";
+
         private static Dictionary<string, string> UserCommunication = new Dictionary<string, string> {
             { "welcome", "Welcome to Eisenhower Matrix App, your task planner!\n"},
             { "title", "Write the title of your upcoming task:" }, 
@@ -22,7 +29,7 @@ namespace EisenhowerMatrixApp
             { "importance", "Is this task important? (y/n)"},
             { "quarter", "Which quarter would you like to edit?\n[IU] important & urgent,\n[IN] important & not urgent,\n[NU] not important & urgent,\n[NN] not important & not urgent." },
             { "index", "\nSpecify ordinal number of the task." },
-            { "wrongInput", "\nSuch an option there is none. Again must type you!" },
+            { "wrongInput", "\nSuch an option there is none. Again type you must!" },
             { "isAdded", "You've added your task successfully.\n"},
             { "isRemoved", "You've removed your task successfully.\n"},
             { "noItem", "There is no such task in your planner.\n"},
@@ -46,13 +53,30 @@ namespace EisenhowerMatrixApp
         public static void PrintPlanner(TodoMatrix planner)
         {
             Console.Clear();
-            //Console.WriteLine("\t\tU R G E N T\t\t|\t\tN O T  U R G E N T\t\t");
-            //for(int i = 0; i < MatrixKeys.Length; i=1+2) 
-            //{
-            //    Console.WriteLine($"\n\nI\nM\nP\nO\nR\nT\nA\nN\nT\n\n\n + {planner.GetQuarter(MatrixKeys[i]).ToString()}+\t\t\t + {planner.GetQuarter(MatrixKeys[i+1]).ToString()}");
-            //    Console.WriteLine("\n\nI\nM\nP\nO\nR\nT\nA\nN\nT\n\n\n");
-            //}
-            Console.WriteLine(planner.ToString()); 
+            Console.WriteLine("\t\tU R G E N T\t\t|\t\tN O T  U R G E N T\t\t");
+            for (int i = 0; i < QUARTER_NUMBER; i = i + 2)
+            {
+                var Uquarter = planner.GetQuarter(MatrixKeys[i]);
+                int Ucount = Uquarter.GetItems().Count;
+                var Nquarter = planner.GetQuarter(MatrixKeys[i + 1]);
+                int Ncount = Nquarter.GetItems().Count;
+                string importantOrNot = "";
+
+                if(i == 0) { importantOrNot = important; }
+                else { importantOrNot = notImportant; }
+                Console.WriteLine("------------------------------------------------------------------------------------|");
+                for (int j=0; j< importantOrNot.Length; j++)
+                {
+                    string Utask = "";
+                    string Ntask = "";
+                    if (j<Ucount) { Utask = Uquarter.GetItem(j).ToString();}
+                    if (j < Ncount) { Ntask = Nquarter.GetItem(j).ToString(); }
+
+                    Console.WriteLine($" {importantOrNot[j]}  |\t{Utask}\t\t\t\t|\t{Ntask}   \t\t\t\t|\n");
+                }
+            }
+            Console.WriteLine("------------------------------------------------------------------------------------|");
+            //Console.WriteLine(planner.ToString()); 
         }
 
         public static void PrintTaskMenu(string title)
@@ -65,22 +89,43 @@ namespace EisenhowerMatrixApp
             }
         }
 
-        public static void ShowColoredTodoItem(TodoItem item)
+        public static void ShowColoredTodoItem(TodoItem item, string task)
         {
             DateTime deadline = item.GetDeadline();
             var timeLeft = (deadline - DateTime.Now).TotalDays;
-            if (timeLeft > 3)
+            if (!item.IsDone() && timeLeft > 3)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
+                PrintGreen(task);
             }
-            else if (timeLeft > 0)
+            else if (!item.IsDone() && timeLeft > 0)
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                PrintYellow(task);
             }
-            else
+            else if (!item.IsDone() && timeLeft==0)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                PrintRed(task);
             }
+        }
+
+        public static void PrintGreen(string task)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(task);
+            Console.ResetColor();
+        }
+
+        public static void PrintYellow(string task)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write(task);
+            Console.ResetColor();
+        }
+
+        public static void PrintRed(string task)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(task);
+            Console.ResetColor();
         }
     }
 }
