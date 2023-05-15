@@ -42,24 +42,6 @@ namespace EisenhowerMatrixApp
         {
             return $"[{GetSymbolForStatus()}] {ChangeDeadlineFormat()} {_title}";
         }
-
-        public void ShowColoredTodoItem()
-        {
-            var timeLeft = (_deadline - DateTime.Now).TotalDays;
-            if (timeLeft > 3)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-            }
-            else if (timeLeft > 0)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-            }
-            Console.ResetColor();
-        }
     }
 
 }
