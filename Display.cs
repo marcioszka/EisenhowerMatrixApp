@@ -64,18 +64,18 @@ namespace EisenhowerMatrixApp
 
                 if(i == 0) { importantOrNot = important; }
                 else { importantOrNot = notImportant; }
-                Console.WriteLine("------------------------------------------------------------------------------------|");
+                //Console.WriteLine("------------------------------------------------------------------------------------|");
                 for (int j=0; j< importantOrNot.Length; j++)
                 {
                     string Utask = "";
                     string Ntask = "";
-                    if (j<Ucount) { Utask = Uquarter.GetItem(j).ToString();}
+                    if (j < Ucount) { Utask = Uquarter.GetItem(j).ToString();}
                     if (j < Ncount) { Ntask = Nquarter.GetItem(j).ToString(); }
 
-                    Console.WriteLine($" {importantOrNot[j]}  |\t{Utask}\t\t\t\t|\t{Ntask}   \t\t\t\t|\n");
+                    Console.WriteLine($" {importantOrNot[j]}\t{Utask}\t\t\t\t\t{Ntask}\t\t\t\t\n");
                 }
             }
-            Console.WriteLine("------------------------------------------------------------------------------------|");
+            //Console.WriteLine("------------------------------------------------------------------------------------|");
             //Console.WriteLine(planner.ToString()); 
         }
 
@@ -89,8 +89,9 @@ namespace EisenhowerMatrixApp
             }
         }
 
-        public static void ShowColoredTodoItem(TodoItem item, string task)
+        public static void ShowColoredTodoItem(TodoItem item)
         {
+            string task = item.ToString();
             DateTime deadline = item.GetDeadline();
             var timeLeft = (deadline - DateTime.Now).TotalDays;
             if (!item.IsDone() && timeLeft > 3)
