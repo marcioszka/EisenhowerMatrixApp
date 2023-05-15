@@ -20,6 +20,10 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
             _isDone = isDone;
         }
 
+        public TodoItem()
+        {
+        }
+
         public string GetTitle() => _title;
 
         public DateTime GetDeadline() => _deadline; 

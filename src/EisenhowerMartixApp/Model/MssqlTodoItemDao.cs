@@ -38,12 +38,10 @@ SELECT SCOPE_IDENTITY();
                 command.Parameters.AddWithValue("@IsDone", todoItem.IsDone());
 
                 int todoItemId = Convert.ToInt32(command.ExecuteScalar());
-                author.Id = todoItemId;
+                todoItem.Id = todoItemId;
             }
             catch (SqlException exception)
             {
-                // tutaj mógłbym dodać logowanie    
-
                 throw;
             }
         }

@@ -11,6 +11,10 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
     {
         static public void Main(string[] args)
         {
+            EisenhowerMatrixDb manager = new();
+            manager.Connect();
+            ITodoItemDao itodoitemdao = new MssqlTodoItemDao(manager.ConnectionString);
+
             TodoMatrix taskPlanner = new TodoMatrix();
             string userChoice = "";
             Display.PrintMessage("welcome");
@@ -44,6 +48,11 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
             Environment.Exit(0);
         }
 
+        //static public void AddTodoItemToListDao(ITodoItemDao itodoitemdao)
+        //{
+        //    TodoItem todoItem = new();
+        //    itodoitemdao.Add(todoItem);
+        //}
         static public void AddItemToList(TodoMatrix matrix)
         {
             var title = Input.GetTaskTitle();
