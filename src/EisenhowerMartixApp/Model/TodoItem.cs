@@ -5,6 +5,8 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
 {
     public class TodoItem
     {
+        public int Id { get; set; }
+
         private string _title;
 
         private DateTime _deadline;
