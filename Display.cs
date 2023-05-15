@@ -54,9 +54,6 @@ namespace EisenhowerMatrixApp
 
         public static void PrintPlanner(TodoMatrix planner)
         {
-<<<<<<< HEAD
-            
-=======
             DataTable eisenhowerMatrix = new DataTable();
             eisenhowerMatrix.Columns.Add("quarter", typeof(string)).SetDataAlignment(TextAlignment.Center);
             eisenhowerMatrix.Columns.Add("URGENT", typeof(string)).SetDataAlignment(TextAlignment.Left);
@@ -95,7 +92,6 @@ namespace EisenhowerMatrixApp
                 }
             }
             Console.WriteLine(eisenhowerMatrix.ToPrettyPrintedString());
->>>>>>> feature/display-matrix
         }
 
         public static void PrintTaskMenu(string title)
