@@ -52,31 +52,7 @@ namespace EisenhowerMatrixApp
 
         public static void PrintPlanner(TodoMatrix planner)
         {
-            Console.Clear();
-            Console.WriteLine("\t\tU R G E N T\t\t|\t\tN O T  U R G E N T\t\t");
-            for (int i = 0; i < QUARTER_NUMBER; i = i + 2)
-            {
-                var Uquarter = planner.GetQuarter(MatrixKeys[i]);
-                int Ucount = Uquarter.GetItems().Count;
-                var Nquarter = planner.GetQuarter(MatrixKeys[i + 1]);
-                int Ncount = Nquarter.GetItems().Count;
-                string importantOrNot = "";
-
-                if(i == 0) { importantOrNot = important; }
-                else { importantOrNot = notImportant; }
-                //Console.WriteLine("------------------------------------------------------------------------------------|");
-                for (int j=0; j< importantOrNot.Length; j++)
-                {
-                    string Utask = "";
-                    string Ntask = "";
-                    if (j < Ucount) { Utask = Uquarter.GetItem(j).ToString();}
-                    if (j < Ncount) { Ntask = Nquarter.GetItem(j).ToString(); }
-
-                    Console.WriteLine($" {importantOrNot[j]}\t{Utask}\t\t\t\t\t{Ntask}\t\t\t\t\n");
-                }
-            }
-            //Console.WriteLine("------------------------------------------------------------------------------------|");
-            //Console.WriteLine(planner.ToString()); 
+            
         }
 
         public static void PrintTaskMenu(string title)
