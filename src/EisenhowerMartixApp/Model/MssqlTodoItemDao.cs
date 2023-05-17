@@ -126,7 +126,7 @@ SELECT SCOPE_IDENTITY();
                 string deleteTodoItemSql =
                     @"
                     DELETE FROM item
-                    WHERE id=@id;
+                    WHERE id=@Id;
                     ";
 
                 command.CommandText = deleteTodoItemSql;
