@@ -1,7 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 
 namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
@@ -59,16 +56,29 @@ SELECT SCOPE_IDENTITY();
                 string selectTodoItemSql =
                     @"
                     SELECT title, deadline, is_done FROM item
-                    WHERE id=@Id;
+                    WHERE id=@id;
                     ";
 
                 command.CommandText = selectTodoItemSql;
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@id", id);
+
+                using var reader = command.ExecuteReader();
+                TodoItem item = null;
+
+                if (reader.Read())
+                {
+                    string title = (string)reader["title"];
+                    DateTime deadline = Convert.ToDateTime(reader["deadline"]);
+                    bool isDone = (bool)reader["is_done"];
+
+                    item = new TodoItem(title, deadline, isDone);
+                    item.Id = id;
+                }
+
+                return item;
             }
             catch (SqlException exception)
             {
-                //     
-
                 throw;
             }
         }
