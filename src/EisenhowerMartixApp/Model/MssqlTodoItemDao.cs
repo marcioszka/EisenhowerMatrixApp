@@ -2,10 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
 {
@@ -52,7 +48,28 @@ SELECT SCOPE_IDENTITY();
 
         public TodoItem Get(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                connection.Open();
+                using var command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+
+                string selectTodoItemSql =
+                    @"
+                    SELECT title, deadline, is_done FROM item
+                    WHERE id=@Id;
+                    ";
+
+                command.CommandText = selectTodoItemSql;
+                command.Parameters.AddWithValue("@Id", id);
+            }
+            catch (SqlException exception)
+            {
+                //     
+
+                throw;
+            }
         }
 
         public List<TodoItem> GetAll()
