@@ -21,9 +21,6 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
 
         public TodoQuarter GetQuarter(string status) => _todoQuarters[status];
 
-
-        //public void AddItem(string title, DateTime deadline, bool isImportant = false) //TODO: f. wybierajaca cwiartke pod wzgledem tych dwóch argumentów
-
         public void AddItem(string title, DateTime deadline, bool isImportant = false, bool isDone = false)
         {
             var isUrgent = IsItemUrgent(deadline);
@@ -59,17 +56,12 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
                 string[] taskDetails = task.Split('|');
                 //TodoQuarters[key].AddItem(taskDetails[0], taskDetails[1]);  //TODO: taskDetails[1] - parse to DateTime
             }
-            //If the last element of line is an empty string,
-            //*isImportant* is equal to false - assigned to a not important TODO quarter.
-            //Otherwise item should be assign to an important TODO quarter.
-            //title|day-month|is_important
+
         }
 
         public void SaveItemsToFile(string filename)
         {
-            //Writes all details about TODO items to fileName.csv file
-            //Every item is written in a separate line the following format:
-            //title | day - month | is_important
+            
         }
 
         public void ArchiveItems()
@@ -80,13 +72,12 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
             }
         }
 
-        /// <inheritdoc/>
         public override string ToString()
         {
             string matrix = "";
             foreach (var quarter in _todoQuarters)
             {
-                matrix += $"{quarter.Key}\n{quarter.Value.ToString()}\n\n"; //   matrix += $"{quarter.Key}\n{quarter.Value.ToString()}";
+                matrix += $"{quarter.Key}\n{quarter.Value.ToString()}\n\n";
 
             }
             return matrix;

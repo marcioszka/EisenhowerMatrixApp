@@ -40,7 +40,6 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
             _isDone = false;
         }
 
-        /// <inheritdoc/>
         public override string ToString()
         {
             return $"[{GetSymbolForStatus()}] {ChangeDeadlineFormat()} {_title}";
