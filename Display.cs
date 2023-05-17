@@ -41,49 +41,7 @@ namespace EisenhowerMatrixApp
         }
 
         public static void PrintMessage(string message) => Console.WriteLine(UserCommunication[message]);
-
-        //public static void PrintPlanner(TodoMatrix planner)
-        //{
-        //    DataTable eisenhowerMatrix = new DataTable();
-        //    eisenhowerMatrix.Columns.Add("quarter", typeof(string)).SetDataAlignment(TextAlignment.Center);
-        //    eisenhowerMatrix.Columns.Add("URGENT", typeof(string)).SetDataAlignment(TextAlignment.Left);
-        //    eisenhowerMatrix.Columns.Add("NOT URGENT", typeof(string)).SetDataAlignment(TextAlignment.Left);
-        //    eisenhowerMatrix.Columns[0].SetWidth(3);
-        //    eisenhowerMatrix.Columns[1].SetWidth(40);
-        //    eisenhowerMatrix.Columns[2].SetWidth(40);
-        //    eisenhowerMatrix.SetShowTableName(false);
-        //    eisenhowerMatrix.Columns[0].SetShowColumnName(false);
-
-        //    Console.Clear();
-        //    for (int i = 0; i < QUARTER_NUMBER; i = i + 2)
-        //    {
-        //        var Uquarter = planner.GetQuarter(MatrixKeys[i]);
-        //        int Ucount = Uquarter.GetItems().Count;
-        //        var Nquarter = planner.GetQuarter(MatrixKeys[i + 1]);
-        //        int Ncount = Nquarter.GetItems().Count;
-        //        string importantOrNot = "";
-
-        //        if (i == 0) { importantOrNot = " IMPORTANT "; }
-        //        else { importantOrNot = " NOT IMPORTANT "; }
-        //        if(importantOrNot == " NOT IMPORTANT ") { eisenhowerMatrix.Rows.Add("-", "--------------------------------------", "--------------------------------------"); }
-        //        for (int j = 0; j < importantOrNot.Length; j++)
-        //        {
-        //            string Utask = "";
-        //            string Ntask = "";
-        //            if (j < Ucount) 
-        //            {
-        //                Utask = Uquarter.GetItem(j).ToString();
-        //            }
-        //            if (j < Ncount) 
-        //            {
-        //                Ntask = Nquarter.GetItem(j).ToString();
-        //            }
-        //            eisenhowerMatrix.Rows.Add(importantOrNot[j], Utask, Ntask);
-        //        }
-        //    }
-        //    Console.WriteLine(eisenhowerMatrix.ToPrettyPrintedString());
-        //}
-
+       
         public static void PrintPlanner(TodoMatrix planner)
         {
             Console.Clear();
@@ -98,7 +56,7 @@ namespace EisenhowerMatrixApp
                 string importantOrNot = "";
                 int cellWidth = 41;
 
-                if (i == 0) { importantOrNot = " IMPORTANT "; }
+                if (i == 0) { importantOrNot = "   IMPORTANT   "; }
                 else { importantOrNot = " NOT IMPORTANT "; }
                 if (importantOrNot == " NOT IMPORTANT ") { Console.WriteLine("---+-----------------------------------------+-----------------------------------------+-"); }
                 for (int j = 0; j < importantOrNot.Length; j++)
@@ -143,36 +101,32 @@ namespace EisenhowerMatrixApp
             string task = item.ToString();
             DateTime deadline = item.GetDeadline();
             var timeLeft = (deadline - DateTime.Now).TotalDays;
-            if (!item.IsDone() && timeLeft > 3) { PrintGreen(); }// return PrintGreen(task); }
-            else if (!item.IsDone() && timeLeft > 0) { PrintYellow(); } //return PrintYellow(task); }
-            else if (!item.IsDone() && timeLeft == 0) { PrintRed(); }//return PrintRed(task); }
+            if (!item.IsDone() && timeLeft > 3) { PrintGreen(); }
+            else if (!item.IsDone() && timeLeft > 0) { PrintYellow(); }
+            else if (!item.IsDone() && timeLeft == 0) { PrintRed(); }
             Console.Write(task);
             PrintWhite();
         }
 
 
-        public static void PrintGreen()//string task)
+        public static void PrintGreen()
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            //return task;
         }
 
-        public static void PrintYellow()//string task)
+        public static void PrintYellow()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            //return task;
         }
 
-        public static void PrintRed()//string task)
+        public static void PrintRed()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            //return task;
         }
 
-        public static void PrintWhite()//string task)
+        public static void PrintWhite()
         {
             Console.ForegroundColor = ConsoleColor.White;
-            //return task;
         }
     }
 }

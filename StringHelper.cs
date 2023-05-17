@@ -45,7 +45,7 @@ namespace EisenhowerMatrixApp
 
         public static bool IsMonthNumber(string month) => ChangeStringToNumber(month) >= 1 && ChangeStringToNumber(month) <= 12;
 
-        public static DateTime ParseStringToDateTime(string date) => DateTime.Parse(date);  //TODO: check parsing
+        public static DateTime ParseStringToDateTime(string date) => DateTime.Parse(date);
 
         public static DateTime GetDeadline(string date) => ParseStringToDateTime(date);
 
