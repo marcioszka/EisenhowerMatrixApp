@@ -5,13 +5,13 @@
         /// <summary>
         /// Adds a new object to the database and sets the new ID.
         /// </summary>
-        /// <param name="todoitem">A new object, with ID not yet set (null). </param>
+        /// <param name="todoItem">A new object, with ID not yet set (null). </param>
         public void Add(TodoItem todoItem);
 
         /// <summary>
         /// Updates existing object's data in the database.
         /// </summary>
-        /// <param name="todoitem">An object from the database, with ID already set.</param>
+        /// <param name="todoItem">An object from the database, with ID already set.</param>
         public void Update(TodoItem todoItem);
 
         /// <summary>
@@ -26,5 +26,11 @@
         /// </summary>
         /// <returns>List of all objects of this type in the database.</returns>
         public List<TodoItem> GetAll();
+
+        /// <summary>
+        /// Removes existing object's data from the database.
+        /// </summary>
+        /// <param name="id">ID of an object to be removed from the database.</param>
+        public void Remove(int id);
     }
 }

@@ -99,19 +99,45 @@ SELECT SCOPE_IDENTITY();
                     @"
                     UPDATE item
                     SET is_done = @IsDone
-                    WHERE id=@id;
+                    WHERE id=@Id;
                     ";
 
                 command.CommandText = updateTodoItemSql;
                 command.Parameters.AddWithValue("@IsDone", todoItem.IsDone());
+                command.Parameters.AddWithValue("@Id", todoItem.Id);
 
                 command.ExecuteNonQuery();
             }
-            catch(SqlException exception)
+            catch (SqlException exception)
             {
                 throw;
             }
-            
+        }
+
+        public void Remove(int id)
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                connection.Open();
+                using var command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+
+                string deleteTodoItemSql =
+                    @"
+                    DELETE FROM item
+                    WHERE id=@id;
+                    ";
+
+                command.CommandText = deleteTodoItemSql;
+                command.Parameters.AddWithValue("@Id", id);
+
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException exception)
+            {
+                throw;
+            }
         }
     }
 }
