@@ -19,6 +19,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
 
         public TodoItem GetItem(int index) => _todoItems[index];
 
+        public int GetItemId(int index) => GetItem(index).Id;
 
         public void AddItem(string title, DateTime deadline, bool isDone = false) => _todoItems.Add(new TodoItem(title, deadline, isDone));
 
