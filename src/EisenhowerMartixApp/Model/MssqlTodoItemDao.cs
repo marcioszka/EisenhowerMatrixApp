@@ -33,13 +33,11 @@ SELECT SCOPE_IDENTITY();
                 command.Parameters.AddWithValue("@Deadline", todoItem.GetDeadline());
                 command.Parameters.AddWithValue("@IsDone", todoItem.IsDone());
 
-                int todoItemId = Convert.ToInt32(command.ExecuteScalar()); // trzeba by dodac w todoItemDao czy cos pole id ???
-                //author.Id = todoItemId;
+                int todoItemId = Convert.ToInt32(command.ExecuteScalar());
+                todoItem.Id = todoItemId;
             }
             catch (SqlException exception)
             {
-                // tutaj mógłbym dodać logowanie    
-
                 throw;
             }
         }
@@ -56,11 +54,11 @@ SELECT SCOPE_IDENTITY();
                 string selectTodoItemSql =
                     @"
                     SELECT title, deadline, is_done FROM item
-                    WHERE id=@id;
+                    WHERE id=@Id;
                     ";
 
                 command.CommandText = selectTodoItemSql;
-                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@Id", id);
 
                 using var reader = command.ExecuteReader();
                 TodoItem item = null;
@@ -90,7 +88,30 @@ SELECT SCOPE_IDENTITY();
 
         public void Update(TodoItem todoItem)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                connection.Open();
+                using var command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+
+                string updateTodoItemSql =
+                    @"
+                    UPDATE item
+                    SET is_done = @IsDone
+                    WHERE id=@id;
+                    ";
+
+                command.CommandText = updateTodoItemSql;
+                command.Parameters.AddWithValue("@IsDone", todoItem.IsDone());
+
+                command.ExecuteNonQuery();
+            }
+            catch(SqlException exception)
+            {
+                throw;
+            }
+            
         }
     }
 }
