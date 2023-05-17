@@ -48,6 +48,15 @@ namespace EisenhowerMatrixApp
         public static DateTime ParseStringToDateTime(string date) => DateTime.Parse(date);  //TODO: check parsing
 
         public static DateTime GetDeadline(string date) => ParseStringToDateTime(date);
+
+        public static string GetEmptySpaceToDisplay(TodoItem item, int cellWidth) 
+        {
+            int stringLength = item.ToString().Length;
+            int emptySpaceLength = cellWidth - stringLength;
+            string emptySpace = "";
+            for (int i  = 0; i < emptySpaceLength; i++) { emptySpace += " "; }
+            return emptySpace;
+        }
        
     }
 }
