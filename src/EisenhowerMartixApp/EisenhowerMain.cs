@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel.Design;
-using System.Threading.Tasks;
-using EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager;
+﻿using EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager;
 using EisenhowerMatrixApp.src.EisenhowerMartixApp.Model;
 using EisenhowerMatrixApp.src.EisenhowerMatrixApp.View;
+using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 
 namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
 {
@@ -11,7 +10,11 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
     {
         static public void Main(string[] args)
         {
-            ConnectToDatabase();
+            //ConnectToDatabase();
+            EisenhowerMatrixDb database = new EisenhowerMatrixDb();
+            database.Connect();
+            ITodoItemDao todoItemDao = new MssqlTodoItemDao(database.ConnectionString);
+
             TodoMatrix taskPlanner = new TodoMatrix();
             string userChoice = "";
             Display.PrintMessage("welcome");
@@ -22,7 +25,14 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                 switch (userChoice.ToUpper())
                 {
                     case "A":
-                        AddItemToList(taskPlanner);
+                        //AddItemToList(taskPlanner);
+                        var title = Input.GetTaskTitle();
+                        var date = Input.GetTaskDate();
+                        var deadline = StringHelper.ParseStringToDateTime(date);
+                        bool isImportant = Input.GetTaskImportance();
+                        AddToCsv(taskPlanner, title, deadline, isImportant);
+                        AddToDB(todoItemDao, title, deadline, isImportant);
+                        Display.PrintMessage("isAdded");
                         break;
                     case "S":
                         Display.PrintPlanner(taskPlanner);
@@ -43,6 +53,17 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
             //SavePlannerToFile(taskPlanner);
             Display.PrintMessage("exit");
             Environment.Exit(0);
+        }
+
+        static public void AddToCsv(TodoMatrix matrix, string title, DateTime deadline, bool isImportant)
+        {
+            matrix.AddItem(title, deadline, isImportant);
+        }
+
+        static public void AddToDB(ITodoItemDao itemDao, string title, DateTime deadline, bool isImportant)
+        {
+            TodoItem item = new TodoItem(title, deadline, isImportant);
+            itemDao.Add(item);
         }
 
         static public void AddItemToList(TodoMatrix matrix)
@@ -102,8 +123,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
 
         static public void ConnectToDatabase()
         {
-            EisenhowerMatrixDb database = new EisenhowerMatrixDb();
-            database.Connect();
+            
         }
     }
 
