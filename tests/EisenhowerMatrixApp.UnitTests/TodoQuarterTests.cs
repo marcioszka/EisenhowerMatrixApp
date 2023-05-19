@@ -73,7 +73,6 @@ public class TodoQuarterTests
     [TestCase(0)]
     [TestCase(1)]
     [TestCase(2)]
-    //[Ignore("Same same but different")]
     public void RemoveItem_WhenCalled_ShouldRemoveItemAtPosition(int position)
     {
         List<TodoItem> todoItems = new List<TodoItem> { new TodoItem("water plants", DateTime.Parse("19-5-2023")), new TodoItem("wash windows", DateTime.Parse("20-5-2023")), new TodoItem("fix car", DateTime.Parse("27-5-2023")) };
@@ -90,7 +89,6 @@ public class TodoQuarterTests
                 referenceQuarter = new TodoQuarter(new List<TodoItem> { new TodoItem("water plants", DateTime.Parse("19-5-2023")), new TodoItem("wash windows", DateTime.Parse("20-5-2023")) });
                 break;
         }
-        //var referenceQuarter = new TodoQuarter(new List<TodoItem> { new TodoItem("wash windows", DateTime.Parse("20-5-2023")), new TodoItem("fix car", DateTime.Parse("27-5-2023")) });
         TodoQuarter expectedQuarter = new TodoQuarter(todoItems);
 
         expectedQuarter.RemoveItem(position);
@@ -120,8 +118,6 @@ public class TodoQuarterTests
 
         Assert.AreEqual(expectedString, referenceString);
     }
-
-
 
 
     [Test]
