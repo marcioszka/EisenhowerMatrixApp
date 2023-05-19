@@ -30,15 +30,32 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                         var date = Input.GetTaskDate();
                         var deadline = StringHelper.ParseStringToDateTime(date);
                         bool isImportant = Input.GetTaskImportance();
-                        AddToCsv(taskPlanner, title, deadline, isImportant);
-                        AddToDB(todoItemDao, title, deadline, isImportant);
+                        AddItem(taskPlanner, title, deadline, isImportant);
+                        AddItemToDB(todoItemDao, title, deadline, isImportant);
                         Display.PrintMessage("isAdded");
                         break;
                     case "S":
                         Display.PrintPlanner(taskPlanner);
                         break;
                     case "D":
-                        RemoveItemFromList(taskPlanner);
+                        //RemoveItemFromList(taskPlanner);
+
+                        var quarterChoice = Input.GetQuarterOption(taskPlanner);
+                        var quarter = taskPlanner.GetQuarter(quarterChoice);
+                        int index = Input.GetIndexOfItem();
+                        if (index > quarter.GetItems().Count)
+                        {
+                            Console.Clear();
+                            Display.PrintMessage("noItem");
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            quarter.RemoveItem(index - 1);
+                            Display.PrintMessage("isRemoved");
+                        }
+
+
                         break;
                     case "C":
                         ChangeItemStatus(taskPlanner);
@@ -55,12 +72,12 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
             Environment.Exit(0);
         }
 
-        static public void AddToCsv(TodoMatrix matrix, string title, DateTime deadline, bool isImportant)
+        static public void AddItem(TodoMatrix matrix, string title, DateTime deadline, bool isImportant)
         {
             matrix.AddItem(title, deadline, isImportant);
         }
 
-        static public void AddToDB(ITodoItemDao itemDao, string title, DateTime deadline, bool isImportant)
+        static public void AddItemToDB(ITodoItemDao itemDao, string title, DateTime deadline, bool isImportant)
         {
             TodoItem item = new TodoItem(title, deadline, isImportant);
             itemDao.Add(item);
