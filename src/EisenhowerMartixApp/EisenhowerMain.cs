@@ -58,8 +58,13 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                             }
                             else
                             {
-                                ChangeStatus(quarter, index);
-                                ChangeStatusinDB(todoItemDao, quarter, index);
+                                var item = quarter.GetItem(index - 1);
+                                if (item.IsDone()) { item.Unmark(); }
+                                else
+                                {
+                                    item.Mark();
+                                }
+                                todoItemDao.Update(item);
                             }
                         }
                         break;
@@ -67,7 +72,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                         //ChangeItemStatus(taskPlanner);
                     //    break;
                     case "R":
-                        TodoMatrix readPlanner = CsvHandler.ReadMatrixFromCsv();
+                        TodoMatrix readPlanner = CsvHandler.ReadMatrixFromCsv();    //TODO: read matrix from db? then another column, with quarters acronyms needed (?)
                         Display.PrintPlanner(readPlanner);
                         break;
                 }
@@ -125,24 +130,6 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                 Display.PrintMessage("isRemoved");
             }
         }
-
-        static public void ChangeStatus(TodoQuarter quarter, int index)
-        {
-            var item = quarter.GetItem(index - 1);
-            if (item.IsDone()) { item.Unmark(); }
-            else
-            {
-                item.Mark();
-            }
-        }
-
-        static public void ChangeStatusinDB(ITodoItemDao itemDao, TodoQuarter quarter, int index)
-        {
-            int idDB = quarter.GetItemId(index - 1);
-            itemDao.Update()
-        }
-
-
 
         static public void ChangeItemStatus(TodoMatrix matrix)
         {
