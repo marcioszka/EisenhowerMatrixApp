@@ -3,6 +3,7 @@ using EisenhowerMatrixApp.src.EisenhowerMartixApp.Model;
 using EisenhowerMatrixApp.src.EisenhowerMatrixApp.View;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
+using System;
 
 namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
 {
@@ -10,7 +11,6 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
     {
         static public void Main(string[] args)
         {
-            //ConnectToDatabase();
             EisenhowerMatrixDb database = new EisenhowerMatrixDb();
             database.Connect();
             ITodoItemDao todoItemDao = new MssqlTodoItemDao(database.ConnectionString);
@@ -37,9 +37,8 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                     case "S":
                         Display.PrintPlanner(taskPlanner);
                         break;
-                    case "D":
+                    case "D": case "C":
                         //RemoveItemFromList(taskPlanner);
-
                         var quarterChoice = Input.GetQuarterOption(taskPlanner);
                         var quarter = taskPlanner.GetQuarter(quarterChoice);
                         int index = Input.GetIndexOfItem();
@@ -50,16 +49,23 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                         }
                         else
                         {
-                            Console.Clear();
-                            quarter.RemoveItem(index - 1);
-                            Display.PrintMessage("isRemoved");
+                            if (userChoice.ToUpper() == "D") 
+                            {
+                                Console.Clear();
+                                RemoveItem(quarter, index);
+                                RemoveItemFromDB(todoItemDao, index);
+                                Display.PrintMessage("isRemoved");
+                            }
+                            else
+                            {
+                                ChangeStatus(quarter, index);
+                                ChangeStatusinDB(todoItemDao, quarter, index);
+                            }
                         }
-
-
                         break;
-                    case "C":
-                        ChangeItemStatus(taskPlanner);
-                        break;
+                    //case "C":
+                        //ChangeItemStatus(taskPlanner);
+                    //    break;
                     case "R":
                         TodoMatrix readPlanner = CsvHandler.ReadMatrixFromCsv();
                         Display.PrintPlanner(readPlanner);
@@ -93,6 +99,15 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
             Display.PrintMessage("isAdded");
         }
 
+        static public void RemoveItem(TodoQuarter quarter, int index)
+        {
+            quarter.RemoveItem(index - 1);
+        }
+        static public void RemoveItemFromDB(ITodoItemDao itemDao, int index)
+        {
+            itemDao.Remove(index - 1);
+        }
+
         static public void RemoveItemFromList(TodoMatrix matrix)
         {
             var quarterChoice = Input.GetQuarterOption(matrix);
@@ -110,6 +125,24 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                 Display.PrintMessage("isRemoved");
             }
         }
+
+        static public void ChangeStatus(TodoQuarter quarter, int index)
+        {
+            var item = quarter.GetItem(index - 1);
+            if (item.IsDone()) { item.Unmark(); }
+            else
+            {
+                item.Mark();
+            }
+        }
+
+        static public void ChangeStatusinDB(ITodoItemDao itemDao, TodoQuarter quarter, int index)
+        {
+            int idDB = quarter.GetItemId(index - 1);
+            itemDao.Update()
+        }
+
+
 
         static public void ChangeItemStatus(TodoMatrix matrix)
         {
@@ -136,11 +169,6 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
             matrix.ArchiveItems();
             CsvHandler.SaveMatrixToCsv(matrix);
             Display.PrintMessage("plannerSaved");
-        }
-
-        static public void ConnectToDatabase()
-        {
-            
         }
     }
 
