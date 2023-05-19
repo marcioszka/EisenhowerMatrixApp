@@ -11,7 +11,7 @@ public class EisenhowerMatrixDb
     {
         using var connection = new SqlConnection(ConnectionString);
         connection.Open();
-        Console.WriteLine($"Connected... {connection.ServerVersion}");
+        //Console.WriteLine($"Connected... {connection.ServerVersion}");
     }
 }
 }

@@ -1,5 +1,4 @@
-﻿using DataTablePrettyPrinter;
-using System.Data;
+﻿using System.Data;
 using EisenhowerMatrixApp.src.EisenhowerMartixApp.Model;
 
 namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
@@ -39,44 +38,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
 
         public static void PrintPlanner(TodoMatrix planner)
         {
-            DataTable eisenhowerMatrix = new DataTable();
-            eisenhowerMatrix.Columns.Add("quarter", typeof(string)).SetDataAlignment(TextAlignment.Center);
-            eisenhowerMatrix.Columns.Add("URGENT", typeof(string)).SetDataAlignment(TextAlignment.Left);
-            eisenhowerMatrix.Columns.Add("NOT URGENT", typeof(string)).SetDataAlignment(TextAlignment.Left);
-            eisenhowerMatrix.Columns[0].SetWidth(3);
-            eisenhowerMatrix.Columns[1].SetWidth(40);
-            eisenhowerMatrix.Columns[2].SetWidth(40);
-            eisenhowerMatrix.SetShowTableName(false);
-            eisenhowerMatrix.Columns[0].SetShowColumnName(false);
-
-            Console.Clear();
-            for (int i = 0; i < QUARTER_NUMBER; i = i + 2)
-            {
-                var Uquarter = planner.GetQuarter(MatrixKeys[i]);
-                int Ucount = Uquarter.GetItems().Count;
-                var Nquarter = planner.GetQuarter(MatrixKeys[i + 1]);
-                int Ncount = Nquarter.GetItems().Count;
-                string importantOrNot = "";
-
-                if (i == 0) { importantOrNot = " IMPORTANT "; }
-                else { importantOrNot = " NOT IMPORTANT "; }
-                if(importantOrNot == " NOT IMPORTANT ") { eisenhowerMatrix.Rows.Add("-", "--------------------------------------", "--------------------------------------"); }
-                for (int j = 0; j < importantOrNot.Length; j++)
-                {
-                    string Utask = "";
-                    string Ntask = "";
-                    if (j < Ucount) 
-                    {
-                        Utask = Uquarter.GetItem(j).ToString();
-                    }
-                    if (j < Ncount) 
-                    {
-                        Ntask = Nquarter.GetItem(j).ToString();
-                    }
-                    eisenhowerMatrix.Rows.Add(importantOrNot[j], Utask, Ntask);
-                }
-            }
-            Console.WriteLine(eisenhowerMatrix.ToPrettyPrintedString());
+            Console.WriteLine(planner.ToString());
         }
 
         public static void PrintTaskMenu(string title)

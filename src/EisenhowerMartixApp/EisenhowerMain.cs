@@ -11,6 +11,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
     {
         static public void Main(string[] args)
         {
+            ConnectToDatabase();
             TodoMatrix taskPlanner = new TodoMatrix();
             string userChoice = "";
             Display.PrintMessage("welcome");
@@ -97,6 +98,12 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
             matrix.ArchiveItems();
             CsvHandler.SaveMatrixToCsv(matrix);
             Display.PrintMessage("plannerSaved");
+        }
+
+        static public void ConnectToDatabase()
+        {
+            EisenhowerMatrixDb database = new EisenhowerMatrixDb();
+            database.Connect();
         }
     }
 
