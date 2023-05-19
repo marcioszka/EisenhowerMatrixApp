@@ -43,22 +43,11 @@ namespace EisenhowerMatrixApp
             return $"[{GetSymbolForStatus()}] {ChangeDeadlineFormat()} {_title}";
         }
 
-        public void ShowColoredTodoItem()
+        public override bool Equals(object comparedItem)
         {
-            var timeLeft = (_deadline - DateTime.Now).TotalDays;
-            if (timeLeft > 3)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-            }
-            else if (timeLeft > 0)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-            }
-            Console.ResetColor();
+            //if (comparedItem == null) return false;
+            //if (!(comparedItem is TodoItem)) return false;
+            return (this._title == ((TodoItem)comparedItem)._title) && (this._deadline == ((TodoItem)comparedItem)._deadline) && (this._isDone == ((TodoItem)comparedItem)._isDone);
         }
     }
 
