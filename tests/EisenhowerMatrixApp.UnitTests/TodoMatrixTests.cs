@@ -133,7 +133,7 @@ namespace EisenhowerMatrixApp.UnitTests
             _todoMatrix.AddItem("Study OOP", DateTime.Now.AddDays(2), true);
 
 
-            var matrixString = "IU\n1. [ ] 19-5 Water plants\n\nNU\n2. [ ] 20-5 Wash windows\n\nNN\n3. [ ] 27-5 Fix car\n\nIU\n4. [ ] 21-5 Study OOP";
+            var matrixString = "IU\n1. [ ] 20-5 Water plants\n2. [ ] 22-5 Study OOP\n\n\nIN\n\n\nNU\n1. [ ] 21-5 Wash windows\n\n\nNN\n1. [ ] 28-5 Fix car\n\n\n";
 
             var expectedOutput = _todoMatrix.ToString();
             Assert.AreEqual(expectedOutput, matrixString);
