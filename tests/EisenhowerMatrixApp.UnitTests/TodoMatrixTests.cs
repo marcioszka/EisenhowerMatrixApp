@@ -108,7 +108,7 @@ namespace EisenhowerMatrixApp.UnitTests
         {
             _todoMatrix.AddItem("Water plants", DateTime.Now.AddDays(1), true, true);
             _todoMatrix.AddItem("Wash windows", DateTime.Now.AddDays(2), false, true);
-            _todoMatrix.AddItem("Fix car", DateTime.Now.AddDays(3), true, false);
+            _todoMatrix.AddItem("Fix car", DateTime.Now.AddDays(3), true);
 
             _todoMatrix.ArchiveItems();
 
