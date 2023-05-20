@@ -92,11 +92,23 @@ namespace EisenhowerMatrixApp.UnitTests
         }
 
         [Test]
+        public void IsItemUrgent_ReturnsTrueWhenDeadlineIsWithinTimeSpan()
+        {
+            int timeSpan = 3;
+            DateTime deadline = DateTime.Now.AddDays(timeSpan - 1);
+            var item = new TodoItem("Water plants", deadline, true);
+            
+            bool isUrgent = _todoMatrix.IsItemUrgent(deadline);
+
+            Assert.IsTrue(isUrgent);
+        }
+
+        [Test]
         public void ArchiveItems_ArchivesAllItemsInQuarters()
         {
-            _todoMatrix.AddItem("Task 1", DateTime.Now.AddDays(1), true);
-            _todoMatrix.AddItem("Task 2", DateTime.Now.AddDays(2), false);
-            _todoMatrix.AddItem("Task 3", DateTime.Now.AddDays(3), true);
+            _todoMatrix.AddItem("Water plants", DateTime.Now.AddDays(1), true);
+            _todoMatrix.AddItem("Wash windows", DateTime.Now.AddDays(2), false);
+            _todoMatrix.AddItem("Fix car", DateTime.Now.AddDays(3), true);
 
             _todoMatrix.ArchiveItems();
 
@@ -110,20 +122,18 @@ namespace EisenhowerMatrixApp.UnitTests
         [Test]
         public void ToString_ReturnsMatrixStringRepresentation()
         {
-            var quarter = new TodoQuarter(new List<TodoItem> { new TodoItem("water plants", DateTime.Now, true), 
-                new TodoItem("wash windows", DateTime.Now.AddDays(1)), new TodoItem("fix car", DateTime.Now.AddDays(8)), 
-                new TodoItem("study OOP", DateTime.Now.AddDays(2), true) });
-
-            string referenceString = "1. [x] 19-5 water plants\n2. [ ] 20-5 wash windows\n3. [ ] 27-5 fix car\n4. [x] 21-5 study OOP\n";
+            var quarter = new TodoQuarter(new List<TodoItem> { new TodoItem("Water plants", DateTime.Now, true), 
+                new TodoItem("Wash windows", DateTime.Now.AddDays(1)), new TodoItem("Fix car", DateTime.Now.AddDays(8)), 
+                new TodoItem("Study OOP", DateTime.Now.AddDays(2), true) });
 
             var _todoMatrix = new TodoMatrix();
-            _todoMatrix.AddItem("water plants", DateTime.Now, true);
-            _todoMatrix.AddItem("wash windows", DateTime.Now.AddDays(1));
-            _todoMatrix.AddItem("fix car", DateTime.Now.AddDays(8));
-            _todoMatrix.AddItem("study OOP", DateTime.Now.AddDays(2), true);
+            _todoMatrix.AddItem("Water plants", DateTime.Now, true);
+            _todoMatrix.AddItem("Wash windows", DateTime.Now.AddDays(1));
+            _todoMatrix.AddItem("Fix car", DateTime.Now.AddDays(8));
+            _todoMatrix.AddItem("Study OOP", DateTime.Now.AddDays(2), true);
 
 
-            var matrixString = "IU\n1. [ ] 19-5 water plants\n\nNU\n2. [ ] 20-5 wash windows\n\nNN\n3. [ ] 27-5 fix car\n\nIU\n4. [ ] 21-5 study OOP";
+            var matrixString = "IU\n1. [ ] 19-5 Water plants\n\nNU\n2. [ ] 20-5 Wash windows\n\nNN\n3. [ ] 27-5 Fix car\n\nIU\n4. [ ] 21-5 Study OOP";
 
             var expectedOutput = _todoMatrix.ToString();
             Assert.AreEqual(expectedOutput, matrixString);
