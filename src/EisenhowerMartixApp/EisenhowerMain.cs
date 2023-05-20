@@ -31,7 +31,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                         var deadline = StringHelper.ParseStringToDateTime(date);
                         bool isImportant = Input.GetTaskImportance();
                         AddItem(taskPlanner, title, deadline, isImportant);
-                        AddItemToDB(todoItemDao, title, deadline, isImportant);
+                        database.AddItemToDB(todoItemDao, title, deadline, isImportant);
                         Display.PrintMessage("isAdded");
                         break;
                     case "S":
@@ -53,7 +53,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                             {
                                 Console.Clear();
                                 RemoveItem(quarter, index);
-                                RemoveItemFromDB(todoItemDao, index);
+                                database.RemoveItemFromDB(todoItemDao, index);
                                 Display.PrintMessage("isRemoved");
                             }
                             else
@@ -88,12 +88,6 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
             matrix.AddItem(title, deadline, isImportant);
         }
 
-        static public void AddItemToDB(ITodoItemDao itemDao, string title, DateTime deadline, bool isImportant)
-        {
-            TodoItem item = new TodoItem(title, deadline, isImportant);
-            itemDao.Add(item);
-        }
-
         static public void AddItemToList(TodoMatrix matrix)
         {
             var title = Input.GetTaskTitle();
@@ -108,11 +102,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
         {
             quarter.RemoveItem(index - 1);
         }
-        static public void RemoveItemFromDB(ITodoItemDao itemDao, int index)
-        {
-            itemDao.Remove(index - 1);
-        }
-
+        
         static public void RemoveItemFromList(TodoMatrix matrix)
         {
             var quarterChoice = Input.GetQuarterOption(matrix);
