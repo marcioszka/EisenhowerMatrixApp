@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace EisenhowerMatrixApp
 {
-    public class TodoItem
+    public class TodoItem : IEquatable<TodoItem>
     {
         private string _title;
 
@@ -43,7 +43,12 @@ namespace EisenhowerMatrixApp
             return $"[{GetSymbolForStatus()}] {ChangeDeadlineFormat()} {_title}";
         }
 
-        public override bool Equals(object comparedItem)
+        //public bool Equals(TodoItem? other)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public bool Equals(TodoItem? comparedItem)
         {
             //if (comparedItem == null) return false;
             //if (!(comparedItem is TodoItem)) return false;

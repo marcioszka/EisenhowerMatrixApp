@@ -53,7 +53,7 @@ public class TodoItemTests
     public void Mark_WhenCalledOnMarked_ShouldNotChangeIsDone(string title, DateTime deadline, bool isDone)
     {
         TodoItem todoItem = new TodoItem(title, (DateTime)deadline, isDone);
-        Assert.AreEqual(true, todoItem.IsDone(),"Initial state of isDone should be true");
+        Assert.AreEqual(true, todoItem.IsDone(),"Initial state of isDone should be true"); //too much
         todoItem.Mark();
         Assert.AreEqual(true, todoItem.IsDone(), "State of isDone after .Unmark() should still be true");
     }
@@ -64,7 +64,7 @@ public class TodoItemTests
     public void Mark_WhenCalledOnUnmarked_ShouldChangeIsDone(string title, DateTime deadline, bool isDone)
     {
         TodoItem todoItem = new TodoItem(title, (DateTime)deadline, isDone);
-        Assert.AreEqual(false, todoItem.IsDone(),"Initial state of isDone should be false");
+        Assert.AreEqual(false, todoItem.IsDone(),"Initial state of isDone should be false"); //too much
         todoItem.Mark();
         Assert.AreEqual(true, todoItem.IsDone(), "State of isDone after .Mark() should be true");
         todoItem.Mark();
@@ -76,7 +76,7 @@ public class TodoItemTests
     public void Unmark_WhenCalledOnMarked_ShouldChangeIsDone(string title, DateTime deadline, bool isDone)
     {
         TodoItem todoItem = new TodoItem(title, (DateTime)deadline, isDone);
-        Assert.AreEqual(true, todoItem.IsDone(),"Initial state of isDone should be true");
+        Assert.AreEqual(true, todoItem.IsDone(),"Initial state of isDone should be true"); //too much
         todoItem.Unmark();
         Assert.AreEqual(false, todoItem.IsDone(), "State of isDone after .Unmark() should be false");
         todoItem.Unmark();
@@ -89,7 +89,7 @@ public class TodoItemTests
     public void Unmark_WhenCalledOnUnmarked_ShouldNotChangeIsDone(string title, DateTime deadline, bool isDone)
     {
         TodoItem todoItem = new TodoItem(title, (DateTime)deadline, isDone);
-        Assert.AreEqual(false, todoItem.IsDone(),"Initial state of isDone should be false");
+        Assert.AreEqual(false, todoItem.IsDone(),"Initial state of isDone should be false"); //too much
         todoItem.Unmark();
         Assert.AreEqual(false, todoItem.IsDone(), "State of isDone after .Unmark() should still be false");
     }

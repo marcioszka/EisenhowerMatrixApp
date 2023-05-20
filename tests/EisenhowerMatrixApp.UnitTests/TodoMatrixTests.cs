@@ -28,7 +28,7 @@ namespace EisenhowerMatrixApp.UnitTests
         }
 
         [Test]
-        public void GetQuarter_ValidStatus_ReturnsQuarter()
+        public void GetQuarter_WhenStatusIsValid_ReturnsQuarter() //when status is not valid +testcase'y
         {
             var quarter = _todoMatrix.GetQuarter("IU");
 
@@ -36,7 +36,7 @@ namespace EisenhowerMatrixApp.UnitTests
         }
 
         [Test]
-        public void AddItem_ImportantAndUrgent_AddsItemToIUQuarter()
+        public void AddItem_ImportantAndUrgent_AddsItemToIUQuarter() //testcase'y
         {
             var title = "Important and Urgent Task";
             var deadline = DateTime.Now.AddDays(2);
@@ -109,6 +109,7 @@ namespace EisenhowerMatrixApp.UnitTests
             _todoMatrix.AddItem("Water plants", DateTime.Now.AddDays(1), true, true);
             _todoMatrix.AddItem("Wash windows", DateTime.Now.AddDays(2), false, true);
             _todoMatrix.AddItem("Fix car", DateTime.Now.AddDays(3), true);
+            int expectedCount = 1;
 
             _todoMatrix.ArchiveItems();
 
@@ -119,7 +120,7 @@ namespace EisenhowerMatrixApp.UnitTests
                 itemsCount += quarter.GetItems().Count;
             }
 
-            Assert.AreEqual(1, itemsCount);
+            Assert.AreEqual(expectedCount, itemsCount);
         }
 
         [Test]
