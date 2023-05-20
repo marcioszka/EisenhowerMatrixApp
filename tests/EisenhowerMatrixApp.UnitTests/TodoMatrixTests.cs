@@ -106,17 +106,20 @@ namespace EisenhowerMatrixApp.UnitTests
         [Test]
         public void ArchiveItems_ArchivesAllItemsInQuarters()
         {
-            _todoMatrix.AddItem("Water plants", DateTime.Now.AddDays(1), true);
-            _todoMatrix.AddItem("Wash windows", DateTime.Now.AddDays(2), false);
-            _todoMatrix.AddItem("Fix car", DateTime.Now.AddDays(3), true);
+            _todoMatrix.AddItem("Water plants", DateTime.Now.AddDays(1), true, true);
+            _todoMatrix.AddItem("Wash windows", DateTime.Now.AddDays(2), false, true);
+            _todoMatrix.AddItem("Fix car", DateTime.Now.AddDays(3), true, false);
 
             _todoMatrix.ArchiveItems();
 
             var quarters = _todoMatrix.GetQuarters();
+            int itemsCount = 0;
             foreach (var quarter in quarters.Values)
             {
-                Assert.AreEqual(0, quarter.GetItems().Count);
+                itemsCount += quarter.GetItems().Count;
             }
+
+            Assert.AreEqual(1, itemsCount);
         }
 
         [Test]
