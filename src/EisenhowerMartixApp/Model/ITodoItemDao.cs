@@ -31,6 +31,6 @@
         /// Removes existing object's data from the database.
         /// </summary>
         /// <param name="id">ID of an object to be removed from the database.</param>
-        public void Remove(int id);
+        public void Remove(TodoItem todoItem);
     }
 }

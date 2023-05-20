@@ -42,7 +42,6 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                         var quarterChoice = Input.GetQuarterOption(taskPlanner);
                         var quarter = taskPlanner.GetQuarter(quarterChoice);
                         int index = Input.GetIndexOfItem();
-                        var id = quarter.GetItemId(index - 1);
                         if (index > quarter.GetItems().Count)
                         {
                             Console.Clear();
@@ -53,8 +52,10 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                             if (userChoice.ToUpper() == "D") 
                             {
                                 Console.Clear();
-                                RemoveItem(quarter, index);
-                                database.RemoveItemFromDB(todoItemDao, index);
+                                var item = quarter.GetItem(index-1);
+                                Console.WriteLine(item);
+                                database.RemoveItemFromDB(todoItemDao, item);
+                                RemoveItem(quarter, index - 1);
                                 Display.PrintMessage("isRemoved");
                             }
                             else
@@ -101,7 +102,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
 
         static public void RemoveItem(TodoQuarter quarter, int index)
         {
-            quarter.RemoveItem(index - 1);
+            quarter.RemoveItem(index);
         }
         
         static public void RemoveItemFromList(TodoMatrix matrix)

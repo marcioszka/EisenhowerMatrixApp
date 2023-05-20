@@ -22,10 +22,10 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager
             itemDao.Add(item, isImportant);
         }
 
-        public void RemoveItemFromDB(ITodoItemDao itemDao, int index)
+        public void RemoveItemFromDB(ITodoItemDao itemDao, TodoItem todoItem)
         {
             
-            itemDao.Remove(index - 1);
+            itemDao.Remove(todoItem);
         }
 
         public void UpdateInDB(ITodoItemDao itemDao, TodoItem item)

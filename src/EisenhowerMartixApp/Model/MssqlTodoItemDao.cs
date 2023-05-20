@@ -118,7 +118,7 @@ SELECT SCOPE_IDENTITY();
             }
         }
 
-        public void Remove(int id)
+        public void Remove(TodoItem todoItem)
         {
             try
             {
@@ -130,11 +130,12 @@ SELECT SCOPE_IDENTITY();
                 string deleteTodoItemSql =
                     @"
                     DELETE FROM item
-                    WHERE id=@Id;
+                    WHERE title=@Title AND deadline=@Deadline;
                     ";
 
                 command.CommandText = deleteTodoItemSql;
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@Title", todoItem.GetTitle());
+                command.Parameters.AddWithValue("@Deadline", todoItem.GetDeadline());
 
                 command.ExecuteNonQuery();
             }
