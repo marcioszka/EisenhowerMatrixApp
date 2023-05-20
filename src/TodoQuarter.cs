@@ -7,11 +7,16 @@ namespace EisenhowerMatrixApp
 
     public class TodoQuarter
     {
-        private List<TodoItem> _todoItems;
+        public List<TodoItem> _todoItems;
 
         public TodoQuarter() 
         {
             _todoItems = new List<TodoItem>();
+        }
+
+        public TodoQuarter(List<TodoItem> todoItems)
+        {
+            _todoItems = todoItems;
         }
 
         public List<TodoItem> GetItems() => _todoItems;
@@ -19,8 +24,6 @@ namespace EisenhowerMatrixApp
 
         public TodoItem GetItem(int index) => _todoItems[index];
 
-
-        //public void AddItem(string title, DateTime deadline) => _todoItems.Add(new TodoItem(title, deadline));
 
         public void AddItem(string title, DateTime deadline, bool isDone = false) => _todoItems.Add(new TodoItem(title, deadline, isDone));
 
@@ -34,12 +37,22 @@ namespace EisenhowerMatrixApp
             int index = 1;
             foreach(TodoItem item in _todoItems) 
             {
-                //Display.ShowColoredTodoItem(item);
                 taskList += $"{index}. {item.ToString()}\n";
                 index++;
             }
-            //Console.ResetColor();
             return taskList;
+        }
+
+        public bool Equals(TodoQuarter? quarter)
+        {
+            if (quarter == null) return false;
+            if (!(quarter is TodoQuarter)) return false;
+            if (!(_todoItems.Count == ((TodoQuarter)quarter).GetItems().Count)) return false;
+            for (int i=0; i< _todoItems.Count; i++) 
+            {
+                if(!_todoItems[i].Equals(((TodoQuarter)quarter).GetItem(i))) return false;
+            }
+            return true;
         }
     }
 

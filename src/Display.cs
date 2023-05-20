@@ -1,5 +1,4 @@
-﻿using DataTablePrettyPrinter;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -47,7 +46,7 @@ namespace EisenhowerMatrixApp
             Console.Clear();
             Console.WriteLine("   |                  URGENT                 |               NOT  URGENT               | ");
             Console.WriteLine("---+-----------------------------------------+-----------------------------------------+-");
-            for (int i = 0; i < QUARTER_NUMBER; i = i + 2)
+            for (int i = 0; i < QUARTER_NUMBER; i=i+2)
             {
                 var urgentQuarter = planner.GetQuarter(MatrixKeys[i]);
                 int urgentItemsCount = urgentQuarter.GetItems().Count;

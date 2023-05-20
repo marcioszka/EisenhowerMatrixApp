@@ -15,16 +15,11 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
-    <PackageReference Include="DataTablePrettyPrinter" Version="0.2.0" />
-<<<<<<< HEAD
-=======
-    <PackageReference Include="NUnit" Version="3.13.3" />
->>>>>>> testing
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="src\" />
     <Folder Include="savedTodos\" />
-    <Folder Include="src\EisenhowerMartixApp\Model\" />
   </ItemGroup>
 
 </Project>
