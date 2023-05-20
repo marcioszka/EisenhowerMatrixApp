@@ -30,8 +30,7 @@ namespace EisenhowerMatrixApp
                         ChangeItemStatus(taskPlanner);
                         break;
                     case "R":
-                        TodoMatrix readPlanner = CsvHandler.ReadMatrixFromCsv();
-                        Display.PrintPlanner(readPlanner);
+                        taskPlanner = CsvHandler.ReadMatrixFromCsv();
                         break;
                 }
             }
