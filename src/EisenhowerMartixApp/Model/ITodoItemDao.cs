@@ -12,7 +12,7 @@
         /// Updates existing object's data in the database.
         /// </summary>
         /// <param name="todoItem">An object from the database, with ID already set.</param>
-        public void Update(TodoItem todoItem);
+        public void UpdateStatus(TodoItem todoItem);
 
         /// <summary>
         /// Get object by ID.

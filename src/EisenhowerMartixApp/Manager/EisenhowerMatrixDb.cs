@@ -29,7 +29,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager
 
         public void UpdateInDB(ITodoItemDao itemDao, TodoItem item)
         {
-            itemDao.Update(item);
+            itemDao.UpdateStatus(item);
         }
     }
 }

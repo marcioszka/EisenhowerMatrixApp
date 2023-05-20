@@ -64,7 +64,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                                 {
                                     item.Mark();
                                 }
-                                todoItemDao.Update(item);
+                                todoItemDao.UpdateStatus(item);
                             }
                         }
                         break;

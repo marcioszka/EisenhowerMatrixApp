@@ -86,7 +86,7 @@ SELECT SCOPE_IDENTITY();
             throw new NotImplementedException();
         }
 
-        public void Update(TodoItem todoItem)
+        public void UpdateStatus(TodoItem todoItem) //UpdateStatus
         {
             try
             {
