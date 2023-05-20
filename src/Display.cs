@@ -99,10 +99,10 @@ namespace EisenhowerMatrixApp
         {
             string task = item.ToString();
             DateTime deadline = item.GetDeadline();
-            var timeLeft = (deadline - DateTime.Now).TotalDays;
-            if (!item.IsDone() && timeLeft > 3) { PrintGreen(); }
-            else if (!item.IsDone() && timeLeft > 0) { PrintYellow(); }
-            else if (!item.IsDone() && timeLeft == 0) { PrintRed(); }
+            var timeLeft = (deadline - DateTime.Now).TotalHours;
+            if (!item.IsDone() && timeLeft >= 72) { PrintGreen(); }
+            else if (!item.IsDone() && timeLeft >= 24 && !item.IsDone() && timeLeft < 72) { PrintYellow(); }
+            else if (!item.IsDone() && timeLeft < 24) { PrintRed(); }
             Console.Write(task);
             PrintWhite();
         }
