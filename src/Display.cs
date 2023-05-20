@@ -44,8 +44,7 @@ namespace EisenhowerMatrixApp
         public static void PrintPlanner(TodoMatrix planner)
         {
             Console.Clear();
-            Console.Clear();
-            //Console.WriteLine("\x1b[3J");
+            Console.WriteLine("\x1b[3J");
             Console.WriteLine("   |                  URGENT                 |               NOT  URGENT               | ");
             Console.WriteLine("---+-----------------------------------------+-----------------------------------------+-");
             for (int i = 0; i < QUARTER_NUMBER; i=i+2)
