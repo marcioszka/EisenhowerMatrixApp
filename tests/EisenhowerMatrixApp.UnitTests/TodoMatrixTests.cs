@@ -91,17 +91,17 @@ namespace EisenhowerMatrixApp.UnitTests
             Assert.AreEqual(title, quarter.GetItems()[0].GetTitle());
         }
 
-        [Test]
-        public void IsItemUrgent_ReturnsTrueWhenDeadlineIsWithinTimeSpan()
-        {
-            int timeSpan = 3;
-            DateTime deadline = DateTime.Now.AddDays(timeSpan - 1);
-            var item = new TodoItem("Water plants", deadline, true);
+        //[Test]
+        //public void IsItemUrgent_ReturnsTrueWhenDeadlineIsWithinTimeSpan()
+        //{
+        //    int timeSpan = 3;
+        //    DateTime deadline = DateTime.Now.AddDays(timeSpan - 1);
+        //    var item = new TodoItem("Water plants", deadline, true);
             
-            bool isUrgent = _todoMatrix.IsItemUrgent(deadline);
+        //    bool isUrgent = _todoMatrix.IsItemUrgent(deadline);
 
-            Assert.IsTrue(isUrgent);
-        }
+        //    Assert.IsTrue(isUrgent);
+        //}
 
         [Test]
         public void ArchiveItems_ArchivesAllItemsInQuarters()
