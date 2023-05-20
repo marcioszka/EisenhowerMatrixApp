@@ -24,7 +24,8 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager
 
         public void RemoveItemFromDB(ITodoItemDao itemDao, int index)
         {
-            itemDao.Remove(index);
+            
+            itemDao.Remove(index - 1);
         }
 
         public void UpdateInDB(ITodoItemDao itemDao, TodoItem item)

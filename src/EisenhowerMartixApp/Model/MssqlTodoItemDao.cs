@@ -69,6 +69,7 @@ SELECT SCOPE_IDENTITY();
                     string title = (string)reader["title"];
                     DateTime deadline = Convert.ToDateTime(reader["deadline"]);
                     bool isDone = (bool)reader["is_done"];
+                    //bool isImportant = (bool)reader["is_important"];
 
                     item = new TodoItem(title, deadline, isDone);
                     item.Id = id;

@@ -54,7 +54,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                             {
                                 Console.Clear();
                                 RemoveItem(quarter, index);
-                                database.RemoveItemFromDB(todoItemDao, id);
+                                database.RemoveItemFromDB(todoItemDao, index);
                                 Display.PrintMessage("isRemoved");
                             }
                             else
