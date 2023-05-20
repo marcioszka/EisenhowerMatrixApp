@@ -88,7 +88,7 @@ SELECT SCOPE_IDENTITY();
             throw new NotImplementedException();
         }
 
-        public void UpdateStatus(TodoItem todoItem) //UpdateStatus
+        public void UpdateStatus(TodoItem todoItem)
         {
             try
             {
@@ -101,14 +101,15 @@ SELECT SCOPE_IDENTITY();
                     @"
                     UPDATE item
                     SET is_done = @IsDone
-                    WHERE id=@Id;
+                    WHERE title=@Title AND deadline=@Deadline;
                     ";
 
                 var isDone = todoItem.IsDone() ? 1 : 0;
 
                 command.CommandText = updateTodoItemSql;
                 command.Parameters.AddWithValue("@IsDone", isDone);
-                command.Parameters.AddWithValue("@Id", todoItem.Id);
+                command.Parameters.AddWithValue("@Title", todoItem.GetTitle());
+                command.Parameters.AddWithValue("@Deadline", todoItem.GetDeadline());
 
                 command.ExecuteNonQuery();
             }

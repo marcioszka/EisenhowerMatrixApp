@@ -25,7 +25,6 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                 switch (userChoice.ToUpper())
                 {
                     case "A":
-                        //AddItemToList(taskPlanner);
                         var title = Input.GetTaskTitle();
                         var date = Input.GetTaskDate();
                         var deadline = StringHelper.ParseStringToDateTime(date);
@@ -38,7 +37,6 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                         Display.PrintPlanner(taskPlanner);
                         break;
                     case "D": case "C":
-                        //RemoveItemFromList(taskPlanner);
                         var quarterChoice = Input.GetQuarterOption(taskPlanner);
                         var quarter = taskPlanner.GetQuarter(quarterChoice);
                         int index = Input.GetIndexOfItem();
@@ -52,8 +50,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                             if (userChoice.ToUpper() == "D") 
                             {
                                 Console.Clear();
-                                var item = quarter.GetItem(index-1);
-                                Console.WriteLine(item);
+                                var item = quarter.GetItem(index - 1);
                                 database.RemoveItemFromDB(todoItemDao, item);
                                 RemoveItem(quarter, index - 1);
                                 Display.PrintMessage("isRemoved");
@@ -67,6 +64,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                                     item.Mark();
                                 }
                                 database.UpdateInDB(todoItemDao, item);
+                                Display.PrintMessage("status");
                             }
                         }
                         break;
