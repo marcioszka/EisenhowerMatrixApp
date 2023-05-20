@@ -5,7 +5,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
 {
     public class Display
     {
-        private static string[] MainMenu = {"Choose following options:", "[A] Add new task", "[S] See your planner", "[C] Change status of a task", "[D] Delete task from planner", "[R] Read planner from file", "[X] Exit application" };
+        private static string[] MainMenu = {"Choose following options:", "[A] Add new task", "[S] See your planner", "[C] Change status of a task", "[D] Delete task from planner", "[R] Read planner from DATABASE", "[X] Exit application" };
 
         private static string[] TaskMenu = { "[A] Add another task", "[S] See your planner", "[M] Back to Main menu" };
 
@@ -40,9 +40,12 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
         {
             Console.WriteLine(planner.ToString());
         }
+
+
         //public static void PrintPlanner(TodoMatrix planner)
         //{
         //    Console.Clear();
+        //    Console.WriteLine("\x1b[3J");
         //    Console.WriteLine("   |                  URGENT                 |               NOT  URGENT               | ");
         //    Console.WriteLine("---+-----------------------------------------+-----------------------------------------+-");
         //    for (int i = 0; i < QUARTER_NUMBER; i = i + 2)

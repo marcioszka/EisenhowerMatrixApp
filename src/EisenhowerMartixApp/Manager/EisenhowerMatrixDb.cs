@@ -32,5 +32,19 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager
         {
             itemDao.UpdateStatus(item);
         }
+
+        public TodoMatrix FillPlannerWithDBItems(TodoMatrix matrix, ITodoItemDao itemDao)
+        {
+            var items = itemDao.GetAll();
+            foreach (var item in items)
+            {
+                var title = item.GetTitle();
+                var deadline = item.GetDeadline();
+                var isDone = item.IsDone();
+                var isImportant = item._isImportant;
+                matrix.AddItem(title, deadline, isImportant, isDone);
+            }
+            return matrix;
+        }
     }
 }

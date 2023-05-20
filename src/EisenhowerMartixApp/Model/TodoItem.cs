@@ -13,6 +13,8 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
 
         private bool _isDone;
 
+        public bool _isImportant { get; set; }
+
         public TodoItem(string title, DateTime deadline, bool isDone = false)
         {
             _title = title;

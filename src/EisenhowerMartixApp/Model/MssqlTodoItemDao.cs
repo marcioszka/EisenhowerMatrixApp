@@ -85,7 +85,43 @@ SELECT SCOPE_IDENTITY();
 
         public List<TodoItem> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                connection.Open();
+                using var command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+
+                string selectTodoItemSql =
+                    @"
+                    SELECT title, deadline, is_done, is_important FROM item;
+                    ";
+
+                command.CommandText = selectTodoItemSql;
+
+                using var reader = command.ExecuteReader();
+                var itemsList = new List<TodoItem>();
+
+                while (reader.Read())
+                {
+                    string title = (string)reader["title"];
+                    DateTime deadline = Convert.ToDateTime(reader["deadline"]);
+                    byte isDoneByte = reader.GetByte("is_done");
+                    bool isDone = isDoneByte == 1;
+                    byte isImportantByte = reader.GetByte("is_important");
+                    bool isImportant = isImportantByte == 1;
+
+                    var item = new TodoItem(title, deadline, isDone) { _isImportant = isImportant };
+
+                    itemsList.Add(item);
+                }
+
+                return itemsList;
+            }
+            catch (SqlException exception)
+            {
+                throw;
+            }
         }
 
         public void UpdateStatus(TodoItem todoItem)

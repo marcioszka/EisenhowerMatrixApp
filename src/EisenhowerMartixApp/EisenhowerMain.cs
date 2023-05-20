@@ -12,7 +12,6 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
         static public void Main(string[] args)
         {
             EisenhowerMatrixDb database = new EisenhowerMatrixDb();
-            //database.Connect();
             ITodoItemDao todoItemDao = new MssqlTodoItemDao(database.ConnectionString); //in EisenhowerMatrixDB
 
             TodoMatrix taskPlanner = new TodoMatrix();
@@ -57,6 +56,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                             }
                             else
                             {
+                                Console.Clear();
                                 var item = quarter.GetItem(index - 1);
                                 if (item.IsDone()) { item.Unmark(); }
                                 else
@@ -72,8 +72,10 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                         //ChangeItemStatus(taskPlanner);
                     //    break;
                     case "R":
-                        TodoMatrix readPlanner = CsvHandler.ReadMatrixFromCsv();    //TODO: read matrix from db? then another column, with quarters acronyms needed (?)
-                        Display.PrintPlanner(readPlanner);
+                        //TodoMatrix readPlanner = CsvHandler.ReadMatrixFromCsv();
+                        var tempPlanner = new TodoMatrix();
+                        taskPlanner = database.FillPlannerWithDBItems(tempPlanner, todoItemDao);
+                        Display.PrintPlanner(taskPlanner);
                         break;
                 }
             }
