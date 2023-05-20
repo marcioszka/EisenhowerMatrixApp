@@ -5,7 +5,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
 {
     public class Display
     {
-        private static string[] MainMenu = {"Choose following options:", "[A] Add new task", "[S] See your planner", "[C] Change status of a task", "[D] Delete task from planner", "[R] Read planner from file", "[X] Exit application" };
+        private static string[] MainMenu = {"Choose following options:", "[A] Add new task", "[S] See your planner", "[C] Change status of a task", "[D] Delete task from planner", "[B] Back up current planner to csv file", "[R] Read planner from file", "[X] Exit application" };
 
         private static string[] TaskMenu = { "[A] Add another task", "[S] See your planner", "[M] Back to Main menu" };
 

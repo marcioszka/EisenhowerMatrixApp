@@ -4,7 +4,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
 {
     public class Input
     {
-        private static string[] MenuChoices = { "A", "C", "D", "R", "S", "X" };
+        private static string[] MenuChoices = { "A", "C", "D", "R", "S", "X", "B" };
         
         public static string GetMenuOption()
         {
@@ -101,6 +101,11 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
                 userInput = Console.ReadLine();
             }
             return StringHelper.ChangeStringToNumber(userInput);
+        }
+
+        public static bool GetAcceptation()
+        {
+            return new []{'y','Y'}.Contains(Console.ReadKey().KeyChar);
         }
     }
 }

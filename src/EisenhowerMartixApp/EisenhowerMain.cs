@@ -11,6 +11,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
     {
         static public void Main(string[] args)
         {
+            bool hasBeenChanged = false;
             EisenhowerMatrixDb database = new EisenhowerMatrixDb();
             //database.Connect();
             ITodoItemDao todoItemDao = new MssqlTodoItemDao(database.ConnectionString); //in EisenhowerMatrixDB
@@ -33,6 +34,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                         AddItem(taskPlanner, title, deadline, isImportant);
                         database.AddItemToDB(todoItemDao, title, deadline, isImportant);
                         Display.PrintMessage("isAdded");
+                        hasBeenChanged = true;
                         break;
                     case "S":
                         Display.PrintPlanner(taskPlanner);
@@ -56,6 +58,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                                 RemoveItem(quarter, index);
                                 database.RemoveItemFromDB(todoItemDao, index);
                                 Display.PrintMessage("isRemoved");
+                                hasBeenChanged = true;
                             }
                             else
                             {
@@ -66,6 +69,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                                     item.Mark();
                                 }
                                 database.UpdateInDB(todoItemDao, item);
+                                hasBeenChanged = true;
                             }
                         }
                         break;
@@ -74,12 +78,26 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                     //    break;
                     case "R":
                         TodoMatrix readPlanner = CsvHandler.ReadMatrixFromCsv();    //TODO: read matrix from db? then another column, with quarters acronyms needed (?)
+                        // If changed to DB, there is a decision to make: enable reading from the csv file and overwrite the db if done so, or keep the csv only for use out of the application
                         Display.PrintPlanner(readPlanner);
+                        break;
+                    case "B":
+                        SavePlannerToFile(taskPlanner);
+                        Display.PrintMessage("Backup updated.");
                         break;
                 }
             }
             while (userChoice.ToUpper()!="X");
-            //SavePlannerToFile(taskPlanner);
+
+            if (hasBeenChanged)
+            {
+                Display.PrintMessage("Some data has been changed, do you want to save these changes in backup? Y/N");
+                if (Input.GetAcceptation())
+                {
+                    SavePlannerToFile(taskPlanner);
+                    Display.PrintMessage("Backup updated.");
+                }
+            }
             Display.PrintMessage("exit");
             Environment.Exit(0);
         }

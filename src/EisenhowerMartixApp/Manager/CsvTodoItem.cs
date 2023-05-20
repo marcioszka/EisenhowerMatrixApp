@@ -5,6 +5,8 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager;
 
 public class CsvTodoItem
 {
+    [Name("id")]
+    public int Id { get; set; }
     [Name("title")]
     public string Title { get; set; }
     [Name("deadlineYear")]
@@ -20,6 +22,7 @@ public class CsvTodoItem
 
     public CsvTodoItem(TodoItem source, bool important)
     {
+        Id = source.Id;
         Title = source.GetTitle();
         IsDone = source.IsDone();
         DeadlineYear = source.GetDeadline().Year;
@@ -27,8 +30,9 @@ public class CsvTodoItem
         DeadlineDay = source.GetDeadline().Day;
         IsImportant = important;
     }
-    public CsvTodoItem(string title, int deadlineYear, int deadlineMonth, int deadlineDay, bool isImportant, bool isDone)
+    public CsvTodoItem(int id, string title, int deadlineYear, int deadlineMonth, int deadlineDay, bool isImportant, bool isDone)
     {
+        Id = id;
         Title = title;
         IsDone = isDone;
         DeadlineYear = deadlineYear;
@@ -51,7 +55,7 @@ public class CsvTodoItem
         return csvPreparedTodos;
     }
 
-    public static TodoMatrix MakeMatrixFromCsvTodoItems(List<CsvTodoItem> csvTodoItems)
+    public static TodoMatrix MakeMatrixFromCsvTodoItems(List<CsvTodoItem> csvTodoItems) // TODO:? This function has to be changed depending on the decision of how to treat the CSV backup 
     {
         TodoMatrix matrix = new TodoMatrix();
         foreach (CsvTodoItem csvTodoItem in csvTodoItems)
