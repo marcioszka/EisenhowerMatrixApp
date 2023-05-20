@@ -12,7 +12,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
         static public void Main(string[] args)
         {
             EisenhowerMatrixDb database = new EisenhowerMatrixDb();
-            database.Connect();
+            //database.Connect();
             ITodoItemDao todoItemDao = new MssqlTodoItemDao(database.ConnectionString);
 
             TodoMatrix taskPlanner = new TodoMatrix();

@@ -102,8 +102,10 @@ SELECT SCOPE_IDENTITY();
                     WHERE id=@Id;
                     ";
 
+                var isDone = todoItem.IsDone() ? 1 : 0;
+
                 command.CommandText = updateTodoItemSql;
-                command.Parameters.AddWithValue("@IsDone", todoItem.IsDone());
+                command.Parameters.AddWithValue("@IsDone", isDone);
                 command.Parameters.AddWithValue("@Id", todoItem.Id);
 
                 command.ExecuteNonQuery();
