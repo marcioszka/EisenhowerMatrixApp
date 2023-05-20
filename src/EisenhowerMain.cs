@@ -5,7 +5,7 @@ namespace EisenhowerMatrixApp
 {
     public class EisenhowerMain
     {
-        static public void Main(string[] args)
+        public void Main(string[] args)
         {
             TodoMatrix taskPlanner = new TodoMatrix();
             string userChoice = "";

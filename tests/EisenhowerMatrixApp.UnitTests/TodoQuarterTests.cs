@@ -108,10 +108,9 @@ public class TodoQuarterTests
     }
 
     [Test]
-    [Ignore("Fix dates in manually added items")]
     public void ToString_WhenCalled_ShouldPrintOutWholeQuarter()
     {
-        var quarter = new TodoQuarter(new List<TodoItem> { new TodoItem("water plants", DateTime.Now, true), new TodoItem("wash windows", DateTime.Now.AddDays(1)), new TodoItem("fix car", DateTime.Now.AddDays(8)), new TodoItem("study OOP", DateTime.Now.AddDays(2), true) });
+        var quarter = new TodoQuarter(new List<TodoItem> { new TodoItem("water plants", new DateTime(2023,5,18), true), new TodoItem("wash windows", new DateTime(2023,5,19)), new TodoItem("fix car", new DateTime(2023,5,26)), new TodoItem("study OOP", new DateTime(2023,5,20), true) });
         string referenceString = "1. [x] 18-5 water plants\n2. [ ] 19-5 wash windows\n3. [ ] 26-5 fix car\n4. [x] 20-5 study OOP\n";
 
         var expectedString = quarter.ToString();
