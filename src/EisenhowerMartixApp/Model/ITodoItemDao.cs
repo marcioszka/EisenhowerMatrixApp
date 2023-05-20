@@ -6,7 +6,7 @@
         /// Adds a new object to the database and sets the new ID.
         /// </summary>
         /// <param name="todoItem">A new object, with ID not yet set (null). </param>
-        public void Add(TodoItem todoItem);
+        public void Add(TodoItem todoItem, bool isImportant);
 
         /// <summary>
         /// Updates existing object's data in the database.

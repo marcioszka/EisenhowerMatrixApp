@@ -18,13 +18,13 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager
 
         public void AddItemToDB(ITodoItemDao itemDao, string title, DateTime deadline, bool isImportant)
         {
-            TodoItem item = new TodoItem(title, deadline, isImportant);
-            itemDao.Add(item);
+            TodoItem item = new TodoItem(title, deadline);
+            itemDao.Add(item, isImportant);
         }
 
         public void RemoveItemFromDB(ITodoItemDao itemDao, int index)
         {
-            itemDao.Remove(index - 1);
+            itemDao.Remove(index);
         }
 
         public void UpdateInDB(ITodoItemDao itemDao, TodoItem item)

@@ -11,7 +11,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
         {
             _connectionString = connectionString;
         }
-        public void Add(TodoItem todoItem)
+        public void Add(TodoItem todoItem, bool isImportant)
         {
             try
             {
@@ -22,8 +22,8 @@ namespace EisenhowerMatrixApp.src.EisenhowerMartixApp.Model
 
                 string insertTodoItemSql =
                     @"
-INSERT INTO item (title, deadline, is_done)
-VALUES (@Title, @Deadline, @IsDone);
+INSERT INTO item (title, deadline, is_done, is_important)
+VALUES (@Title, @Deadline, @IsDone, @IsImportant);
 
 SELECT SCOPE_IDENTITY();
 ";
@@ -32,6 +32,7 @@ SELECT SCOPE_IDENTITY();
                 command.Parameters.AddWithValue("@Title", todoItem.GetTitle());
                 command.Parameters.AddWithValue("@Deadline", todoItem.GetDeadline());
                 command.Parameters.AddWithValue("@IsDone", todoItem.IsDone());
+                command.Parameters.AddWithValue("@IsImportant", isImportant);
 
                 int todoItemId = Convert.ToInt32(command.ExecuteScalar());
                 todoItem.Id = todoItemId;
