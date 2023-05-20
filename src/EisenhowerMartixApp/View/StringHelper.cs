@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EisenhowerMatrixApp.src.EisenhowerMartixApp.Model;
 
 namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
 {
@@ -45,9 +40,18 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
 
         public static bool IsMonthNumber(string month) => ChangeStringToNumber(month) >= 1 && ChangeStringToNumber(month) <= 12;
 
-        public static DateTime ParseStringToDateTime(string date) => DateTime.Parse(date);  //TODO: check parsing
+        public static DateTime ParseStringToDateTime(string date) => DateTime.Parse(date);
 
         public static DateTime GetDeadline(string date) => ParseStringToDateTime(date);
-       
+
+        public static string GetEmptySpaceToDisplay(TodoItem item, int cellWidth)
+        {
+            int stringLength = item.ToString().Length;
+            int emptySpaceLength = cellWidth - stringLength;
+            string emptySpace = "";
+            for (int i = 0; i < emptySpaceLength; i++) { emptySpace += " "; }
+            return emptySpace;
+        }
+
     }
 }

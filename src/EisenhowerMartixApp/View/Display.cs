@@ -36,10 +36,54 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.View
 
         public static void PrintMessage(string message) => Console.WriteLine(UserCommunication[message]);
 
+        //public static void PrintPlanner(TodoMatrix planner)
+        //{
+        //    Console.WriteLine(planner.ToString());
+        //}
         public static void PrintPlanner(TodoMatrix planner)
         {
-            Console.WriteLine(planner.ToString());
+            Console.Clear();
+            Console.WriteLine("   |                  URGENT                 |               NOT  URGENT               | ");
+            Console.WriteLine("---+-----------------------------------------+-----------------------------------------+-");
+            for (int i = 0; i < QUARTER_NUMBER; i = i + 2)
+            {
+                var urgentQuarter = planner.GetQuarter(MatrixKeys[i]);
+                int urgentItemsCount = urgentQuarter.GetItems().Count;
+                var notUrgentQuarter = planner.GetQuarter(MatrixKeys[i + 1]);
+                int notUrgentItemsCount = notUrgentQuarter.GetItems().Count;
+                string importantOrNot = "";
+                int cellWidth = 41;
+
+                if (i == 0) { importantOrNot = "   IMPORTANT   "; }
+                else { importantOrNot = " NOT IMPORTANT "; }
+                if (importantOrNot == " NOT IMPORTANT ") { Console.WriteLine("---+-----------------------------------------+-----------------------------------------+-"); }
+                for (int j = 0; j < importantOrNot.Length; j++)
+                {
+                    if (j < urgentItemsCount)
+                    {
+                        var urgentTask = urgentQuarter.GetItem(j);
+
+                        Console.Write($" {importantOrNot[j]} |");
+                        ShowColoredTodoItem(urgentTask);
+                        Console.Write($"{StringHelper.GetEmptySpaceToDisplay(urgentTask, cellWidth)}|");
+                    }
+                    else { Console.Write($" {importantOrNot[j]} |                                         |"); }
+                    if (j < notUrgentItemsCount)
+                    {
+                        var notUrgentTask = notUrgentQuarter.GetItem(j);
+                        ShowColoredTodoItem(notUrgentTask);
+                        Console.Write($"{StringHelper.GetEmptySpaceToDisplay(notUrgentTask, cellWidth)}|");
+                    }
+                    else
+                    {
+                        Console.Write("                                         |   ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+            Console.WriteLine("---+-----------------------------------------+-----------------------------------------+-");
         }
+
 
         public static void PrintTaskMenu(string title)
         {
