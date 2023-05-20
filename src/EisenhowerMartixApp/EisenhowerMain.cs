@@ -13,7 +13,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
         {
             EisenhowerMatrixDb database = new EisenhowerMatrixDb();
             //database.Connect();
-            ITodoItemDao todoItemDao = new MssqlTodoItemDao(database.ConnectionString);
+            ITodoItemDao todoItemDao = new MssqlTodoItemDao(database.ConnectionString); //in EisenhowerMatrixDB
 
             TodoMatrix taskPlanner = new TodoMatrix();
             string userChoice = "";
@@ -64,7 +64,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
                                 {
                                     item.Mark();
                                 }
-                                todoItemDao.UpdateStatus(item);
+                                database.UpdateInDB(todoItemDao, item);
                             }
                         }
                         break;
