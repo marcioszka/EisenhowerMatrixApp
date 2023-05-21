@@ -81,6 +81,7 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp
             }
             while (userChoice.ToUpper()!="X");
             //SavePlannerToFile(taskPlanner);
+            database.ArchiveItemsInDB(todoItemDao);
             Display.PrintMessage("exit");
             Environment.Exit(0);
         }

@@ -32,5 +32,7 @@
         /// </summary>
         /// <param name="id">ID of an object to be removed from the database.</param>
         public void Remove(TodoItem todoItem);
+
+        public void RemoveDone();
     }
 }

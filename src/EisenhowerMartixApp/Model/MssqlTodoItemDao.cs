@@ -181,5 +181,31 @@ SELECT SCOPE_IDENTITY();
                 throw;
             }
         }
+
+        public void RemoveDone()
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                connection.Open();
+                using var command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+
+                string deleteTodoItemSql =
+                    @"
+                    DELETE FROM item
+                    WHERE is_done=@IsDone;
+                    ";
+
+                command.CommandText = deleteTodoItemSql;
+                command.Parameters.AddWithValue("@IsDone", 1);
+
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException exception)
+            {
+                throw;
+            }
+        }
     }
 }

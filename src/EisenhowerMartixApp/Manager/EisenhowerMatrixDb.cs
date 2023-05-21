@@ -46,5 +46,10 @@ namespace EisenhowerMatrixApp.src.EisenhowerMatrixApp.Manager
             }
             return matrix;
         }
+
+        public void ArchiveItemsInDB(ITodoItemDao itemDao)
+        {
+            itemDao.RemoveDone();
+        }
     }
 }
